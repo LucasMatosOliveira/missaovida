@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 243, 244, 246; /* Tema claro background-color */
+  --background-end-rgb: 243, 244, 246; /* Igual ao start para uma cor sólida */
+}
+
+body {
+  background-color: rgb(var(--background-start-rgb));
+  color: rgb(var(--foreground-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .input-field {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-md;
+  }
+  .error-message {
+    color: #fc4b6c;
+  }
+
+  .input-field-error {
+    border-color: #fc4b6c;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.tab-content {
+  display: table-cell;
+  padding: 20px;
+  vertical-align: top;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+.form-control-line .form-group {
+  overflow: hidden;
+}
+
+.form-control-line .form-control {
+  border: 0px;
+  border-radius: 0px;
+  padding-left: 0px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.form-control-line .form-control:focus {
+  border-bottom: 1px solid #009efb;
+}
+
+.form-control-line .form-control {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control-line .form-control.form-control-success:focus {
+  border-bottom: 1px solid #4bbecf; }
+
+.form-control-line .form-control.form-control-warning:focus {
+  border-bottom: 1px solid #ffb22b; }
+
+.form-control-line .form-control.form-control-danger:focus {
+  border-bottom: 1px solid #fc4b6c; }
+
+.light-theme .form-control-line {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark-theme .form-control-line {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 1600px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #000000;
+}
