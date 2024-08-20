@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "authRoutes.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/auth/(.*)",
+        "dest": "/authRoutes.js"
+        }
+    ]
+}
