@@ -8,7 +8,7 @@
     ],
     "routes": [
       {
-        "src": "routes/(.*)",
+        "src": "routes/auth/(.*)",
         "dest": "routes/authRoutes.js"
         }
     ]
