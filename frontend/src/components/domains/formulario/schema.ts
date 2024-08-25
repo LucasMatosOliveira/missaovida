@@ -25,6 +25,27 @@ export const internosInsaltSchema = z.object({
     pagaPensao: z.string().optional(),
     religiao: z.string().optional(),
     qualReligiao: z.string().optional(),
+
+    tratamentoPsiquiatrico: z.string().optional(),
+    tratamentoPsiquiatricoLocal: z.string().optional(),
+    medicamentosPsicotropicos: z.string().optional(),
+    medicamentosPsicotropicosMotivo: z.string().optional(),
+    medicamentoUsoContinuo: z.string().optional(),
+    lesaoFisica: z.string().optional(),
+    lesaoFisicaMembro: z.string().optional(),
+    doencaRespiratoria: z.string().optional(),
+    doencaRespiratoriaTipo: z.string().optional(),
+    alergiaAlimentar: z.string().optional(),
+    alergiaAlimentarTipo: z.string().optional(),
+    alergiaMedicamento: z.string().optional(),
+    alergiaMedicamentoTipo: z.string().optional(),
+    doencas: z.string().optional(),
+    doencaCoracao: z.string().optional(),
+    doencaCoracaoTipo: z.string().optional(),
+    tentouSuicidio: z.string().optional(),
+    autoMutilou: z.string().optional(),
+    historicoCancer: z.string().optional(),
+    historicoCancerTipo: z.string().optional(),
 });
 
 export type InternosInsaltSchema = z.infer<typeof internosInsaltSchema>;
