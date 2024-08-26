@@ -5,7 +5,7 @@ type FormSectionProps = {
     children: ReactNode;
 }
 
-const FormSection: React.FC<FormSectionProps> = ({ title, children }) => {
+export function FormSection({ title, children }: FormSectionProps) {
   return (
     <div style={{ marginBottom: '20px' }}>
       <h2 style={{ borderBottom: '1px solid #ccc', paddingBottom: '5px', marginBottom: '15px' }}>
@@ -15,5 +15,3 @@ const FormSection: React.FC<FormSectionProps> = ({ title, children }) => {
     </div>
   );
 };
-
-export default FormSection;

@@ -6,7 +6,7 @@ import { Form } from "@/components/form";
 import { InternosInsaltSchema } from "./schema";
 import { useRouter } from "next/navigation";
 import { AppRoutes } from "@/commom/http/app-routes";
-import FormSection from "@/components/form/FormSection";
+import { FormSection } from "@/components/form/FormSection";
 
 export function InternoInsalt({
   idInterno,
