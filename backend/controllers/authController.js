@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Usuarios = require("../models/usuarios");
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 const strongPassword = require('../passwordUtils');
 
 const registerUsuario = async (req, reply) => {
@@ -8,7 +9,10 @@ const registerUsuario = async (req, reply) => {
         const { nome_usuario, username, password } = req.body;
 
         // Verifica se o usuário já existe
-        const existingUser = await Usuarios.findOne({ where: { username } });       
+        const existingUser = await prisma.usuario.findUnique({
+            where: { username }
+        });
+
         if (existingUser) {
             return reply.status(409).send({ message: "Usuário já existe" });
         }
@@ -17,7 +21,13 @@ const registerUsuario = async (req, reply) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Salvar o usuário no banco de dados
-        await Usuarios.create({ nome_usuario, username, password: hashedPassword });
+        await prisma.usuario.create({
+            data: {
+                nome_usuario: nome_usuario,
+                username,
+                password: hashedPassword
+            }
+        });
 
         reply.send({ message: 'Usuário registrado com sucesso' });
     } catch (error) {
@@ -30,7 +40,10 @@ const loginUsuario = async (req, reply) => {
         const { username, password } = req.body;
 
         // Encontra o usuário no banco de dados
-        const user = await Usuarios.findOne({ where: { username } });
+        const user = await prisma.usuario.findUnique({
+            where: { username }
+        });
+
         if (!user) {
             return reply.status(404).send({ message: 'Usuário não encontrado' });
         }
@@ -42,7 +55,7 @@ const loginUsuario = async (req, reply) => {
         }
 
         // Gera um token JWT com o nome de usuário como payload
-        const token = jwt.sign({ username: user.username }, strongPassword , { expiresIn: '1h' });
+        const token = jwt.sign({ username: user.username }, strongPassword, { expiresIn: '1h' });
 
         reply.send({ token });
     } catch (error) {

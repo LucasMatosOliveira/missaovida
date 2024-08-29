@@ -4,4 +4,3 @@ const crypto = require('crypto');
 const strongPassword = crypto.randomBytes(20).toString('hex');
 
 module.exports = strongPassword;
-

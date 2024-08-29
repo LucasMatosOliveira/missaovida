@@ -2,9 +2,10 @@ const openApiDocs = {
     routePrefix: '/docs',
     exposeRoute: true,
     openapi: {
+      openapi: '3.0.0',
       info: {
         title: "Missão Vida API",
-        description: "Missão Vida Project API",
+        description: "API do Projeto Missão Vida",
         version: "1.0.0",
       },
       externalDocs: {
@@ -12,15 +13,29 @@ const openApiDocs = {
         description: 'Find more info here'
       },
       servers: [
-        { url: 'http://localhost:3333', description: 'Development Server' },
+        { url: 'https://backendnovomissaovida.vercel.app', description: 'Servidor de Produção' },
       ],
   
       tags: [
-        { name: 'Auth', description: 'Auth related endpoints' },
-        { name: 'Usuario', description: 'Usuário related endpoints' },
-        { name: 'Acolhido', description: 'Acolhido related endpoints' }
+        { name: 'Auth', description: 'Endpoints relacionados à autenticação' },
+        { name: 'Usuario', description: 'Endpoints relacionados ao usuário' },
+        { name: 'Acolhido', description: 'Endpoints relacionados ao acolhido' }
       ],
+      components: {
+        securitySchemes: {
+            BearerAuth: {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT'
+            }
+          }
+      },
+      security: [
+          {
+              BearerAuth: []
+          }
+      ]
     },
-  };
+};
 
 module.exports = openApiDocs

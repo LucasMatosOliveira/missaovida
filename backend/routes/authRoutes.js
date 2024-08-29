@@ -1,4 +1,3 @@
-// routes/authRoutes.js
 const authController = require('../controllers/authController');
 
 async function authRoutes(fastify, options) {
@@ -12,18 +11,22 @@ async function authRoutes(fastify, options) {
             body: {
                 type: 'object',
                 properties: {
+                    nome_usuario: { type: 'string' },
                     username: { type: 'string' },
                     password: { type: 'string' }
                 },
-                required: ['username', 'password']
+                required: ['nome_usuario','username', 'password']
             },
             response: {
                 201: {
                     description: 'Usuário registrado com sucesso',
-                    type: 'null'
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' }
+                    }
                 },
                 400: {
-                    description: 'Usuário já existe',
+                    description: 'Erro ao registrar usuário (usuário já existe ou dados inválidos)',
                     type: 'object',
                     properties: {
                         error: { type: 'string' }
@@ -50,12 +53,16 @@ async function authRoutes(fastify, options) {
                 required: ['username', 'password']
             },
             response: {
-                201: {
+                200: {
                     description: 'Usuário logado com sucesso',
-                    type: 'null'
+                    type: 'object',
+                    properties: {
+                        token: { type: 'string' },
+                        message: { type: 'string' }
+                    }
                 },
-                400: {
-                    description: 'Erro ao logar usuário',
+                401: {
+                    description: 'Credenciais inválidas',
                     type: 'object',
                     properties: {
                         error: { type: 'string' }

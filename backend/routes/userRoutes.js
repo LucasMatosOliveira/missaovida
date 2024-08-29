@@ -1,7 +1,7 @@
 const usuarioController = require('../controllers/usuarioController');
 
 async function userRoutes(fastify, options) {
-    // Rota para atualizar um paciente existente
+    // Rota para atualizar um usuário existente
     fastify.put('/Usuario', {
         schema: {
             description: 'Atualiza um Usuário existente',
@@ -11,15 +11,19 @@ async function userRoutes(fastify, options) {
             body: {
                 type: 'object',
                 properties: {
+                    nome_usuario: { type: 'string' },
                     username: { type: 'string' },
                     password: { type: 'string' }
                 },
-                required: ['username', 'password']
+                required: ['nome_usuario','username', 'password']
             },
             response: {
                 200: {
                     description: 'Usuário atualizado com sucesso',
-                    type: 'null'
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' }
+                    }
                 },
                 400: {
                     description: 'Erro ao atualizar usuário',
@@ -34,7 +38,7 @@ async function userRoutes(fastify, options) {
         handler: usuarioController.updateUsuario
     });
 
-    // Rota para obter todos os pacientes
+    // Rota para obter todos os usuários
     fastify.get('/Usuarios', {
         schema: {
             description: 'Obtém a lista de todos os usuários',
@@ -46,8 +50,9 @@ async function userRoutes(fastify, options) {
                     items: {
                         type: 'object',
                         properties: {
-                            username: { type: 'string' },
-                            password: { type: 'string' }
+                            nome_usuario: { type: 'string' },
+                            id_usuario: { type: 'string' },
+                            username: { type: 'string' }                           
                         }
                     }
                 },
@@ -64,25 +69,27 @@ async function userRoutes(fastify, options) {
         handler: usuarioController.getUsuarios
     });
 
-    // Rota para obter um paciente por ID
-    fastify.get('/Usuario/:id', {
+    // Rota para obter um usuário por ID
+    fastify.get('/Usuario/:id_usuario', {
         schema: {
             description: 'Obtém um usuário pelo ID',
             tags: ['Usuario'],
             params: {
                 type: 'object',
                 properties: {
-                    id: { type: 'string' }
+                    id_usuario: { type: 'string' }
                 },
-                required: ['id']
+                required: ['id_usuario']
             },
             response: {
                 200: {
                     description: 'Usuário recuperado com sucesso',
                     type: 'object',
                     properties: {
-                        username: { type: 'string' },
-                        password: { type: 'string' }
+                        nome_usuario: { type: 'string' },
+                        id_usuario: { type: 'string' },
+                        username: { type: 'string' }
+                        
                     }
                 },
                 404: {

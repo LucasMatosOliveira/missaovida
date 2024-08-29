@@ -244,7 +244,11 @@ async function acolhidoRoutes(fastify, options) {
             response: {
                 201: {
                     description: 'Acolhido criado com sucesso',
-                    type: 'null'
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' },
+                        acolhido: { type: 'object' }
+                    }
                 },
                 400: {
                     description: 'Erro ao criar acolhido',
@@ -551,7 +555,7 @@ async function acolhidoRoutes(fastify, options) {
                             contato_familiar: { type: 'string' },
                             filhos_acolhido: { type: 'integer' },
                             religiao_acolhido: { type: 'string' },
-                            acolhidoFilhos: {
+                            filho: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -561,7 +565,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            dados_saudes: {
+                            saude: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -584,7 +588,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            medicamentos: {
+                            medicamento: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -595,7 +599,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }   
                             },
-                            vida_juridicas: {
+                            vidajuridica: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -630,7 +634,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            estado_socials: {
+                            social: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -648,7 +652,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            termo_guardas: {
+                            termoguarda: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -662,7 +666,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            termo_responsabilidades: {
+                            termoresponsabilidade: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -671,7 +675,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            termo_alta: {
+                            termoalta: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -697,16 +701,16 @@ async function acolhidoRoutes(fastify, options) {
     });
 
     // Rota para obter um acolhido por ID
-    fastify.get('/Acolhido/:id', {
+    fastify.get('/Acolhido/:id_acolhido', {
         schema: {
             description: 'Obtém um acolhido pelo ID',
             tags: ['Acolhido'],
             params: {
                 type: 'object',
                 properties: {
-                    id: { type: 'string' }
+                    id_acolhido: { type: 'string' }
                 },
-                required: ['id']
+                required: ['id_acolhido']
             },
             response: {
                 200: {
@@ -735,7 +739,7 @@ async function acolhidoRoutes(fastify, options) {
                             contato_familiar: { type: 'string' },
                             filhos_acolhido: { type: 'integer' },
                             religiao_acolhido: { type: 'string' },
-                            acolhidoFilhos: {
+                            filho: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -745,7 +749,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            dados_saudes: {
+                            saude: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -768,7 +772,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            medicamentos: {
+                            medicamento: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -779,7 +783,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }   
                             },
-                            vida_juridicas: {
+                            vidajuridica: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -814,7 +818,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            estado_socials: {
+                            social: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -832,7 +836,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            termo_guardas: {
+                            termoguarda: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -846,7 +850,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            termo_responsabilidades: {
+                            termoresponsabilidade: {
                                 type: 'array',
                                 items: {
                                     type: 'object',
@@ -855,7 +859,7 @@ async function acolhidoRoutes(fastify, options) {
                                     }
                                 }
                             },
-                            termo_alta: {
+                            termoalta: {
                                 type: 'array',
                                 items: {
                                     type: 'object',

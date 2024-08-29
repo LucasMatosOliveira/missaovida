@@ -1,12 +1,21 @@
-const Usuarios = require("../models/usuarios");
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+const bcrypt = require('bcrypt');
 
 const updateUsuario = async (req, reply) => {
     try {
         const {nome, username, password} = req.body;
-        await Usuarios.update({ nome, password}, {
-            where: { username }
-        });
-        return reply.status(200).send();
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const updateUser = await prisma.usuario.update({
+            where: {username},
+            data: {
+                nome_usuario: nome,
+                password: hashedPassword
+            }
+        })
+        return reply.status(200).send(updateUser);
     } catch (error) {
         return reply.status(400).send(error);
     }
@@ -14,8 +23,8 @@ const updateUsuario = async (req, reply) => {
 
 const getUsuarios = async (req, reply) => {
     try {
-        const user = await Usuarios.findAll();
-        return reply.send(user);
+        const users = await prisma.usuario.findMany();
+        return reply.send(users);
     } catch (error) {
         return reply.status(400).send(error);
     }
@@ -24,8 +33,10 @@ const getUsuarios = async (req, reply) => {
 
 const getUsuarioById = async (req, reply) => {
     try {
-        const { id } = req.params;
-        const user = await Usuarios.findByPk(id);
+        const { id_usuario } = req.params;
+        const user = await prisma.usuario.findUnique({
+            where: { id_usuario: parseInt(id_usuario) }
+        });
         
         if (!user) {
             return reply.status(404).send({ message: "Usuário não encontrado" });
