@@ -12,8 +12,8 @@ const openApiDocs = require('../openAPI')
 const strongPassword = require('../passwordUtils');
 
 
-const app = Fastify({ 
-  logger: true 
+const app = Fastify({
+  logger: true
 })
 const PORT = process.env.PORT || 3333
 
