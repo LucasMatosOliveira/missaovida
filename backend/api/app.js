@@ -1,14 +1,14 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-import Fastify from 'fastify'
-import cors from '@fastify/cors'
+const Fastify = require('fastify');
+const cors = require('@fastify/cors');
 const swagger = require('@fastify/swagger');
 const swaggerui = require('@fastify/swagger-ui');
 const fastifyJwt = require('@fastify/jwt');
 const authRoutes = require('../routes/authRoutes');
 const userRoutes = require('../routes/userRoutes');
 const acolhidoRoutes = require('../routes/acolhidoRoutes');
-const openApiDocs = require('../openAPI')
+const openApiDocs = require('../openAPI');
 const strongPassword = require('../passwordUtils');
 
 
