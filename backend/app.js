@@ -6,7 +6,7 @@ const fastifyJwt = require('@fastify/jwt');
 const db = require('./models');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
-const openApiDocs = require('./openapi')
+const openApiDocs = require('./openAPI')
 const strongPassword = require('./passwordUtils');
 const acolhidoRoutes = require('./routes/acolhidoRoutes');
 
