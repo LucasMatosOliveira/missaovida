@@ -42,7 +42,7 @@ export function InternoInsalt({
             <h2 className="text-xl font-bold">Formulário de Cadastro</h2>
           </div>
             </div>
-          <FormSection title="DADOS PESSOAIS DO ACOLHIDO">
+          <FormSection title="1 - DADOS PESSOAIS DO ACOLHIDO">
             <div className="grid grid-cols-3 gap-6">
               <div className="mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -58,7 +58,7 @@ export function InternoInsalt({
               </div>
               <div className="mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  Naturalidade
+                  Naturalidade (Cidade/estado)
                 </label>
                 <Input name="naturalidade" />
               </div>
@@ -179,7 +179,7 @@ export function InternoInsalt({
             </div>
           </FormSection>
 
-          <FormSection title="DADOS DE SAÚDE DO ACOLHIDO">
+          <FormSection title="2 - DADOS DE SAÚDE DO ACOLHIDO">
             <div className="grid grid-cols-3 gap-6">
               <div className="mb-3">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -301,6 +301,230 @@ export function InternoInsalt({
                 </label>
                 <Input name="historicoCancerTipo" />
               </div>
+            </div>
+          </FormSection>
+
+          <FormSection title="3 - DADOS SOBRE A VIDA JURÍDICA">
+            <div className="grid grid-cols-3 gap-6">
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Já foi preso?
+                </label>
+                <Input name="foiPreso" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Qual o motivo?
+                </label>
+                <Input name="foiPresoMotivo" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Responde algum processo ou inquérito?
+                </label>
+                <Input name="respondeProcesso" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Em qual Cidade/Estado?
+                </label>
+                <Input name="respondeProcessoLocal" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Faz uso de tornozeleira eletrônica?
+                </label>
+                <Input name="tornozeleiraEletronica" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Informou a central de monitoramento?
+                </label>
+                <Input name="tornozeleiraEletronicaCentralMonitoramento" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Já cumpriu pena?
+                </label>
+                <Input name="cumpriuPena" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Está em desacordo com a lei?
+                </label>
+                <Input name="desacordoLei" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Porquê?
+                </label>
+                <Input name="desacordoLeiMotivo" />
+              </div>
+            </div>
+          </FormSection>
+
+          <FormSection title="4 - QUAIS SÃO AS SUBSTÂNCIAS PSICOATIVAS DO SEU USO">
+            <div className="grid grid-cols-3 gap-6">
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Álcool
+                </label>
+                <Input name="alcool" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  O que levou você a fazer o uso, com que idade e por quê?
+                </label>
+                <Input name="alcoolInformacoes" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Você faz uso do tabaco?
+                </label>
+                <Input name="tabaco" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Com quantos anos começou?
+                </label>
+                <Input name="tabacoInformacoes" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Opções de susbtancias em geral
+                </label>
+                <Input name="substancias" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  O que te levou a fazer uso das substância ou das substâncias?
+                </label>
+                <Input name="substanciasMotivoUso" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Qual a principal substância que você faz uso?
+                </label>
+                <Input name="substanciaMaiorUso" />
+              </div>
+            </div>
+          </FormSection>
+          
+          <FormSection title="5 - SOBRE O ESTADO SOCIAL">
+            <div className="grid grid-cols-3 gap-6">
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Estava em situação de rua?
+                </label>
+                <Input name="situacaoRua" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Há quanto tempo e por quê?
+                </label>
+                <Input name="situacaoRuaInformacoes" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Como chegou a Missão Vida?
+                </label>
+                <Input name="chegadaMissaoVida" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Qual Igreja?
+                </label>
+                <Input name="chegadaMissaoVidaIgreja" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Qual secretaria governamental?
+                </label>
+                <Input name="chegadaMissaoVidaSecretariaGov" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Como se sente na situação em que você se encontra?
+                </label>
+                <Input name="comoSente" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Quais são os seus objetivos como acolhido na Missão Vida?
+                </label>
+                <Input name="objetivosAcolhido" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Já passou por outro Centro de Recuperação antes?
+                </label>
+                <Input name="outroCentroRecuperacao" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Qual?
+                </label>
+                <Input name="outroCentroRecuperacaoQual" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Por quanto tempo e por que saiu?
+                </label>
+                <Input name="outroCentroRecuperacaoInformacoes" />
+              </div>
+            </div>
+          </FormSection>
+
+          <FormSection title="6 - TERMO DE GUARDA DE BENS E DOCUMENTOS">
+            <div className="grid grid-cols-3 gap-6">
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Autorizo a guarda dos meus documentos pessoais, bem como algum valor monetário que venha a possuir durante o período do programa de recuperação, como forma de prevenção a perda e roubo.
+                </label>
+                <Input name="autorizacaoGuardaDocumentos" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Quais documentos serão guardados?
+                </label>
+                <Input name="autorizacaoGuardaDocumentosQuais" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Qual a aparência/cor da carteira para documentos?
+                </label>
+                <Input name="carteiraDocumentosAparencia" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Apresentou recurso em espécie no valor de: 
+                </label>
+                <Input name="valorMonetarioApresentado" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Aparelho celular/marca apresentado:
+                </label>
+                <Input name="aparelhoCelularApresentado" />
+              </div>
+              <div className="mb-3">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Outros objetos de valor apresentados:
+                </label>
+                <Input name="objetoValorApresentado" />
+              </div>
+            </div>
+          </FormSection>
+
+          <FormSection title="7 - TERMO DE RESPONSABILIDADE DE ACOLHIMENTO">
+            <div className="grid grid-cols-3 gap-6">
+              
+            </div>
+          </FormSection>
+
+          <FormSection title="8 - TERMO DE ALTA DO ACOLHIDO">
+            <div className="grid grid-cols-3 gap-6">
+              
             </div>
           </FormSection>
           <div className="flex items-center justify-center mt-6">

@@ -46,6 +46,44 @@ export const internosInsaltSchema = z.object({
     autoMutilou: z.string().optional(),
     historicoCancer: z.string().optional(),
     historicoCancerTipo: z.string().optional(),
+
+    foiPreso: z.string().optional(),
+    foiPresoMotivo: z.string().optional(),
+    respondeProcesso: z.string().optional(),
+    respondeProcessoLocal: z.string().optional(),
+    tornozeleiraEletronica: z.string().optional(),
+    tornozeleiraEletronicaCentralMonitoramento: z.string().optional(),
+    cumpriuPena: z.string().optional(),
+    desacordoLei: z.string().optional(),
+    desacordoLeiMotivo: z.string().optional(),
+
+    alcool: z.string().optional(),
+    alcoolInformacoes: z.string().optional(),
+    tabaco: z.string().optional(),
+    tabacoInformacoes: z.string().optional(),
+    substancias: z.string().optional(),
+    substanciasMotivoUso: z.string().optional(),
+    substanciaMaiorUso: z.string().optional(),
+
+    situacaoRua: z.string().optional(),
+    situacaoRuaInformacoes: z.string().optional(),
+    chegadaMissaoVida: z.string().optional(),
+    chegadaMissaoVidaIgreja: z.string().optional(),
+    chegadaMissaoVidaSecretariaGov: z.string().optional(),
+    comoSente: z.string().optional(),
+    objetivosAcolhido: z.string().optional(),
+    outroCentroRecuperacao: z.string().optional(),
+    outroCentroRecuperacaoQual: z.string().optional(),
+    outroCentroRecuperacaoInformacoes: z.string().optional(),
+
+    autorizacaoGuardaDocumentos: z.string().optional(),
+    autorizacaoGuardaDocumentosQuais: z.string().optional(),
+    carteiraDocumentosAparencia: z.string().optional(),
+    valorMonetarioApresentado: z.string().optional(),
+    aparelhoCelularApresentado: z.string().optional(),
+    objetoValorApresentado: z.string().optional(),
+
+    
 });
 
 export type InternosInsaltSchema = z.infer<typeof internosInsaltSchema>;
