@@ -13,7 +13,7 @@ const openApiDocs = {
         description: 'Find more info here'
       },
       servers: [
-        { url: 'https://missaovida-backend.vercel.app/', description: 'Servidor de Produção' },
+        { url: 'https://missaovida-backend.vercel.app', description: 'Servidor de Produção' },
       ],
 
       tags: [
