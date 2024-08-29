@@ -11,16 +11,15 @@ const acolhidoRoutes = require('../routes/acolhidoRoutes');
 const openApiDocs = require('../openAPI');
 const strongPassword = require('../passwordUtils');
 
-
 const app = Fastify({
   logger: true
-})
-const PORT = process.env.PORT || 3333
+});
+const PORT = process.env.PORT || 3333;
 
 app.register(cors);
 app.register(fastifyJwt, {
   secret: strongPassword
-})
+});
 
 app.decorate("authenticate", async (request, reply) => {
   try {
@@ -28,16 +27,15 @@ app.decorate("authenticate", async (request, reply) => {
   } catch (err) {
     reply.send(err);
   }
-})
+});
 
-app.register(swagger, openApiDocs);
-app.register(swaggerui, openApiDocs);
+app.register(openApiDocs);
 
 app.register(acolhidoRoutes, { prefix: '/api' });
 app.register(userRoutes, { prefix: '/api' });
 app.register(authRoutes, { prefix: '/auth' });
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   await app.ready();
   app.server.emit('request', req, res);
-}
+};
