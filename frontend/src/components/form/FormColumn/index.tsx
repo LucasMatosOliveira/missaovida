@@ -8,7 +8,5 @@ export function FormColumn({ span, size, className, children, ...props }: React.
     size ??= 'md';
     span ??= 12;
 
-    const spanClass = `w-full w-auto ${size}:w-${span}/12`;
-
-    return <div {...props} className={cloneAndAddClass(spanClass, 'px-4', className)}>{children}</div>;
+    return <div {...props} className={cloneAndAddClass(`col-${size}-${span}`, 'form-group-rc', className)}>{children}</div>;
 }

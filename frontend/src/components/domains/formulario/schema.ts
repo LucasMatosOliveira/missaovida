@@ -83,7 +83,6 @@ export const internosInsaltSchema = z.object({
     aparelhoCelularApresentado: z.string().optional(),
     objetoValorApresentado: z.string().optional(),
 
-    
 });
 
 export type InternosInsaltSchema = z.infer<typeof internosInsaltSchema>;

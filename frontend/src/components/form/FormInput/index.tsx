@@ -6,31 +6,34 @@ import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
 import { FormEye } from "../FormEye";
 
-export const FormInput = <TModel,>({ label, name, disabled, help, step, transform, type }: FormInputProps<TModel>) => {
+export const FormInput = <TModel,>({ label, name, disabled, help, step = "any", transform = "uppercase", type }: FormInputProps<TModel>) => {
     const context = useFormContext();
-    const { control, formState: { errors } } = context;
+    const { control, formState: { errors }, getValues } = context;
     const erro = obterValor(errors, name as string);
     const erroMessage = erro ? (Array.isArray(erro) ? erro[0].message : erro.message) : null;
 
-    const [types, setTypes] = useState<HTMLInputTypeAttribute>(type || 'text');
+    const [inputType, setInputType] = useState<HTMLInputTypeAttribute>(type || 'text');
     const [icon, setIcon] = useState(eyeOff);
 
     const handleToggle = () => {
-        if (types === 'password') {
+        if (inputType === 'password') {
             setIcon(eye);
-            setTypes('text');
+            setInputType('text');
         } else {
             setIcon(eyeOff);
-            setTypes('password');
+            setInputType('password');
         }
     };
 
     const handleValue = (value: string) => {
-        if (transform === "uppercase")
-            value = value.toUpperCase();
-        else if (transform === "lowercase")
-            value = value.toLowerCase();
-        return value;
+        switch (transform) {
+            case "uppercase":
+                return value.toUpperCase();
+            case "lowercase":
+                return value.toLowerCase();
+            default:
+                return value;
+        }
     };
 
     return (
@@ -40,19 +43,18 @@ export const FormInput = <TModel,>({ label, name, disabled, help, step, transfor
             <Controller
                 name={name as string}
                 control={control}
-                render={({ field: { value, onChange } }) => (
+                render={({ field: { value = "", onChange } }) => (
                     <div className="relative">
-
                         <input
                             disabled={disabled}
-                            type={types}
+                            type={inputType}
                             value={value}
-                            step={step || "any"}
+                            step={step}
                             onChange={(event) => onChange(handleValue(event.target.value))}
                             className={`input-field ${erroMessage ? 'input-field-error' : ''}`}
                         />
                         {type === 'password' && (
-                            <FormEye icon={icon} size={20} handleToggle={handleToggle}/>
+                            <FormEye icon={icon} size={20} handleToggle={handleToggle} />
                         )}
                     </div>
                 )}
