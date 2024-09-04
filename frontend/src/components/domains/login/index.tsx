@@ -30,12 +30,12 @@ export default function LoginPage() {
                         </div>
                         <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-2">Usuário</label>
-                            <FormInput<UserLoginSchema> name="username" />
+                            <FormInput<UserLoginSchema> name="username" transform="none"/>
 
                         </div>
                         <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-2">Senha</label>
-                            <FormInput<UserLoginSchema> name="password" type="password" />
+                            <FormInput<UserLoginSchema> name="password" type="password" transform="none"/>
                         </div>
                         <div className="flex items-center justify-center pt-2">
                             <button
