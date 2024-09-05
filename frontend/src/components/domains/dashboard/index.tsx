@@ -23,8 +23,8 @@ export function DashboardGrid({ idInterno, onDadosSalvos}: DashboardProps) {
   }, []);
 
   return (
-    <section className='py-24 bg-dark flex justify-center items-center' style={{ backgroundColor: 'rgb(243, 244, 246)' }}>
-      <div className='container bg-white p-8 rounded-lg text-black'>
+    <section className='py-24 bg-white flex justify-center items-center' style={{ backgroundColor: 'rgb(243, 244, 246)' }}>
+      <div className='container bg-white p-3 rounded-lg text-black border border-black'>
         <DataTable columns={columns} data={userData} />
       </div>
     </section>

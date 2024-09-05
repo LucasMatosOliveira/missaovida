@@ -1,8 +1,43 @@
 .logo {
-    height: 10em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: 0.75s;
-    display: block;
-    margin: auto;
-  }
+  height: auto;
+  width: 160px;
+  will-change: filter;
+  transition: 0.75s;
+  display: block;
+  margin: auto;
+  margin-left: 0;
+}
+
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.header-text {
+  text-align: center;
+  margin-right: 45%;
+  font-family: sans-serif;
+  font-size: 24px;
+}
+
+.novo_interno{
+  background-color: #ffff;
+  color: black;
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.novo_interno:hover{
+  background-color: black;
+  color: white;
+}
