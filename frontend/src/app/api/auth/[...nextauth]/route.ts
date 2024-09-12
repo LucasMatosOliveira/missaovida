@@ -2,11 +2,12 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaClient } from '@prisma/client';
 
+
 const bcrypt = require('bcrypt');
 
 const prisma = new PrismaClient();
 
-const nextAuthOptions: NextAuthOptions = {
+export const nextAuthOptions: NextAuthOptions = {
     providers: [
         Credentials({
             name: 'credentials',
@@ -59,7 +60,7 @@ const nextAuthOptions: NextAuthOptions = {
     }
 }
 
-async function hashAndComparePassword(password: string, serverPassword: string): Promise<boolean> {
+export async function hashAndComparePassword(password: string, serverPassword: string): Promise<boolean> {
     try {
         const hashedPassword = await bcrypt.hash(serverPassword, 10);
         console.log('Hash da senha:', hashedPassword);

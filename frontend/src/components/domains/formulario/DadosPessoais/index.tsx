@@ -2,8 +2,17 @@ import { FormColumn } from "@/components/form/FormColumn";
 import { FormInput } from "@/components/form/FormInput";
 import { FormRow } from "@/components/form/FormRow";
 import { FormSection } from "@/components/form/FormSection";
+import { FilhosInsalt } from "./Filhos";
+import { FormCheckbox } from "@/components/form/FormCheckbox";
+import { InternosInsaltSchema } from "../schema";
+import { useFormContext } from "react-hook-form";
+
+const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
 export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
+    const { getValues, watch } = useFormContext();
+    const values = watch();
+
     return (
         <FormSection title="1 - DADOS PESSOAIS DO ACOLHIDO">
             <FormRow>
@@ -35,7 +44,7 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
                 <FormColumn span={4}>
                     <FormInput name="filiacaoPai" label="Filiação: Pai" />
                 </FormColumn>
-                    <FormColumn span={4}>
+                <FormColumn span={4}>
                     <FormInput name="mae" label="Mãe" />
                 </FormColumn>
             </FormRow>
@@ -62,31 +71,21 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
                 </FormColumn>
             </FormRow>
             <FormRow>
-                <FormColumn span={4}>
-                    <FormInput name="temFamiliaApoio" label="Tem Família que pode apoiá-lo?" />
+                <FormColumn span={6}>
+                    <FormCheckbox<InternosInsaltSchema> name="temFamiliaApoio" label="Tem Família que pode apoiá-lo" />
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="nomeFamiliar" label="Nome do Familiar" disabled={!values.temFamiliaApoio} />
+                    </FormColumn>
                 </FormColumn>
-                <FormColumn span={4}>
-                    <FormInput name="nomeFamiliar" label="Nome do Familiar" />
-                </FormColumn>
-                <FormColumn span={4}>
-                    <FormInput name="quantosFilhos" label="Quantos filhos?" />
-                </FormColumn>
-            </FormRow>
-            <FormRow>
-                <FormColumn span={4}>
-                    <FormInput name="nomesFilhos" label="Nomes dos Filhos" />
-                </FormColumn>
-                <FormColumn span={4}>
-                    <FormInput name="pagaPensao" label="Paga pensão?" />
-                </FormColumn>
-                <FormColumn span={4}>
-                    <FormInput name="religiao" label="Religião" />
+                <FormColumn span={6} >
+                    <FormCheckbox<InternosInsaltSchema> name="religiao" label="Religião" />
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="qualReligiao" label="Qual Religião?"  disabled={!values.religiao}/>
+                    </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
-                <FormColumn span={4}>
-                    <FormInput name="qualReligiao" label="Qual Religião?" />
-                </FormColumn>
+                <FilhosInsalt />
             </FormRow>
         </FormSection>
     );

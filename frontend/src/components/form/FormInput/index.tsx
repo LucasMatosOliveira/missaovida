@@ -38,7 +38,7 @@ export const FormInput = <TModel,>({ label, name, disabled, help, step = "any", 
 
     return (
         <>
-            <label className={erroMessage ? 'text-danger' : ''}>{label}</label>
+            <label className={disabled ? 'text-gray-400' : erroMessage ? 'text-danger' : ''}>{label}</label>
             {help && <FormInfo content={help} />}
             <Controller
                 name={name as string}

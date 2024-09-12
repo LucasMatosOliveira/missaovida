@@ -1,14 +1,18 @@
 import { PropsWithChildren } from "react";
+import { Header } from "../Header";
 
-export function PageLayout({children, title}: PageLayoutProps){
+export function PageLayout({ children, title }: PageLayoutProps) {
     return (
-        <div className="page-container">
-            {title && <h1 className="page-title">{title}</h1>}
-            <main className="page-content">
-                {children}
-            </main>
+        <>
+            <Header />
+            <div className="page-container">
+                {title && <h1 className="page-title">{title}</h1>}
+                <main className="">
+                    {children}
+                </main>
 
-        </div>
+            </div>
+        </>
     )
 }
 

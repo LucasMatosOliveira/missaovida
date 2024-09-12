@@ -5,7 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 export function useInternosInsalt({ idInterno, onDadosSalvos}: InternosInsaltArgs) {
     const formMethods = useForm<InternosInsaltSchema>({
         resolver: zodResolver(internosInsaltSchema),
-        mode:'onChange'
+        mode:'onChange',
+        defaultValues: {
+            foiPreso: false
+        }
     });
 
     return {
