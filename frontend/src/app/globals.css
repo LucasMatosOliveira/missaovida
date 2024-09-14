@@ -327,8 +327,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 20px;
-  background-color: #f7fafc;
+  background-color: #fffffff3;
   color: #000000;
 }
 
@@ -339,10 +338,12 @@ body {
 }
 
 .page-content {
+   flex: 1;
+}
+content {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem;
+  /* Outros estilos conforme necessário */
 }
 
 .btn-circle {
@@ -419,3 +420,103 @@ body {
     border-collapse: collapse;
     width: 100%;
 }
+
+
+/* Spinner */
+
+.preloader{
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+  background: rgba(255,255,255,0.3);
+  opacity: 50%;
+}
+
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.7);
+  z-index: 9999;
+}
+
+.preloader-message {
+  display: table;
+  white-space: nowrap;
+  transform-origin: center center;
+  transform: translateY(-50%);
+  width: 100%;
+  position: absolute;
+  top: calc(50% - 50px);
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  color: #444;
+}
+.preloader:before{
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 50px;
+  transform-origin: center center;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+

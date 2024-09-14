@@ -56,19 +56,16 @@ export const nextAuthOptions: NextAuthOptions = {
         async session({ session, token }) {
             session.user = token.user as any
             return session
-        }
+        },
     }
 }
 
 export async function hashAndComparePassword(password: string, serverPassword: string): Promise<boolean> {
     try {
         const hashedPassword = await bcrypt.hash(serverPassword, 10);
-        console.log('Hash da senha:', hashedPassword);
         const isMatch = await bcrypt.compare(password, hashedPassword);
-        console.log('As senhas correspondem:', isMatch);
         return isMatch;
     } catch (error) {
-        console.error('Erro ao comparar senhas:', error);
         return false;
     }
 }

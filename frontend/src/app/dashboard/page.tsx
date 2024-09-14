@@ -4,31 +4,33 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { DashboardGrid } from "@/components/domains/dashboard";
 import { PageLayout } from "@/components/ui/Page";
+import { AppRoutes } from "@/commom/http/app-routes";
+import { useRouter } from "next/navigation";
+import { useSpinner } from "@/contexts/SpinnerContext";
 
 export default function Dashboard() {
+    const { showSpinner, hideSpinner } = useSpinner();
     const { data: session, status } = useSession();
-    const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
         if (status === "loading") {
-            setIsLoading(true);
+            showSpinner();
         } else {
-            setIsLoading(false);
+            hideSpinner();
         }
-    }, [status]);
 
-    if (isLoading) {
-        return <p>Carregando...</p>;
-    }
+        if (!session && status !== "loading") {
+            router.push(AppRoutes.Login());
+        }
+    }, [session, status, router, showSpinner, hideSpinner]);
+
+
+    if (!session) return null;
     return (
-        <>
-            {session ? (
-                <PageLayout>
-                    <DashboardGrid />
-                </PageLayout>
-            ) : (
-                <p>Por favor, faça login para acessar o Dashboard.</p>
-            )}
-        </>
+        <PageLayout>
+            <DashboardGrid />
+        </PageLayout>
+
     );
 }

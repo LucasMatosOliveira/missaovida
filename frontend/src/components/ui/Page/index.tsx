@@ -4,13 +4,13 @@ import { Header } from "../Header";
 export function PageLayout({ children, title }: PageLayoutProps) {
     return (
         <>
-            <Header />
-            <div className="page-container">
-                {title && <h1 className="page-title">{title}</h1>}
-                <main className="">
-                    {children}
-                </main>
 
+            <div className="page-container">
+                <Header pageTitle="Dashboard"/>
+                {title && <h1 className="page-title">{title}</h1>}
+                <div className="page-content mt-4">
+                    {children}
+                </div>
             </div>
         </>
     )

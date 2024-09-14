@@ -74,8 +74,6 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <Header pageTitle="Página de Listagem" />
-
       <div className="flex items-center justify-between">
         <div className="pr-4">
           <Button
