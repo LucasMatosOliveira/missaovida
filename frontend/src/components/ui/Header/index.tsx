@@ -12,6 +12,7 @@ export function Header({ pageTitle }: HeaderProps) {
   return (
     <FormRow className='m-0'>
       <div className="header-fixed">
+        <div className="header-contents">
         <FormColumn span={4}>
           <img
             src="https://revwildodosanjos.com.br/wp-content/themes/revwildo-spa/assets/images/vida.png"
@@ -25,8 +26,8 @@ export function Header({ pageTitle }: HeaderProps) {
         <FormColumn span={4} className='header-column sign-out-button'>
           <SignOutButton />
         </FormColumn>
+        </div>
       </div>
     </FormRow>
-
   );
 }

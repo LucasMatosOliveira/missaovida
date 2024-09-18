@@ -11,16 +11,23 @@
 .header-fixed {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   padding: 1rem;
   background-color: #fff;
   position: fixed;
   top: 0;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
 
+.header-contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 82%;
+}
 
 /* .header-text {
   text-align: center;
@@ -57,4 +64,9 @@
 .novo_interno:hover{
   background-color: black;
   color: white;
+}
+
+.custom-border {
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
 }
