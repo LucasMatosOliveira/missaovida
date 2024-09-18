@@ -24,26 +24,29 @@ export function DadosSaudeInsalt() {
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="medicamentosPsicotropicos" label="Já tomou ou toma medicamentos psicotrópicos" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="medicamentosPsicotropicosMotivo" label="Qual e por quê" disabled={!values.medicamentosPsicotropicos} />
+                        <FormInput name="medicamentosPsicotropicosMotivo" label="Qual e por quê?" disabled={!values.medicamentosPsicotropicos} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={6} >
-                    <FormCheckbox<InternosInsaltSchema> name="lesaoFisica" label="Já sofreu alguma lesão física" />
+                    <FormCheckbox<InternosInsaltSchema> name="medicamentoUsoContinuo" label="Já tomou outro medicamento de uso contínuo" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="lesaoFisicaMembro" label="Em qual dos membros" disabled={!values.lesaoFisica} />
+                        <FormInput name="medicamentoUsoContinuoQual" label="Qual?" disabled={!values.medicamentoUsoContinuo} />
                     </FormColumn>
                 </FormColumn>
-                <FormColumn span={6} className="mt-5">
-                    <FormCheckbox<InternosInsaltSchema> name="medicamentoUsoContinuo" label="Já tomou outro medicamento de uso contínuo" />
+                <FormColumn span={6} >
+                    <FormCheckbox<InternosInsaltSchema> name="lesaoFisica" label="Já sofreu alguma lesão física" />
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="lesaoFisicaMembro" label="Em qual dos membros?" disabled={!values.lesaoFisica} />
+                    </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="doencaRespiratoria" label="Tem doença respiratória" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="doencaRespiratoriaTipo" label="Qual doença respiratória" disabled={!values.doencaRespiratoria} />
+                        <FormInput name="doencaRespiratoriaTipo" label="Qual doença respiratória?" disabled={!values.doencaRespiratoria} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6} >
@@ -60,21 +63,27 @@ export function DadosSaudeInsalt() {
                         <FormInput name="alergiaMedicamentoTipo" label="Nome do medicamento" disabled={!values.alergiaMedicamento} />
                     </FormColumn>
                 </FormColumn>
-                <FormColumn span={4} className="mt-5">
+                <FormColumn span={4} >
                     <FormCheckbox<InternosInsaltSchema> name="doencas" label="Apresenta alguma doença" />
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="doencaCoracaoTipo" label="Qual doença?" disabled={!values.doencas} />
+                    </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="doencaCoracao" label="Apresenta doenças do coração" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="doencaCoracaoTipo" label="Qual doença do coração" disabled={!values.doencaCoracao} />
+                        <FormInput name="doencaCoracaoTipo" label="Qual doença do coração?" disabled={!values.doencaCoracao} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="historicoCancer" label="Tem histórico de câncer" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="historicoCancerTipo" label="Qual tipo de câncer" disabled={!values.historicoCancer} />
+                        <FormInput name="historicoCancerOrigem" label="Em você ou na família?" disabled={!values.historicoCancer} />
+                    </FormColumn>
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="historicoCancerTipo" label="Qual tipo de câncer?" disabled={!values.historicoCancer} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>

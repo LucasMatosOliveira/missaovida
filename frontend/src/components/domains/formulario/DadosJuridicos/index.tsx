@@ -17,7 +17,7 @@ export function DadosJuridicosInsalt() {
         <FormSection title="3 - DADOS SOBRE A VIDA JURÍDICA">
             <FormRow >
                 <FormColumn span={6} >
-                    <FormCheckbox name="foiPreso" label="Foi preso" />
+                    <FormCheckbox name="foiPreso" label="Já foi preso" />
                     <FormColumn span={8} className={classNamesSubSection}>
                         <FormInput<InternosInsaltSchema> name="foiPresoMotivo" label="Motivo" disabled={!values.foiPreso} />
                     </FormColumn>
@@ -25,26 +25,26 @@ export function DadosJuridicosInsalt() {
                 <FormColumn span={6}>
                     <FormCheckbox<InternosInsaltSchema> name="respondeProcesso" label="Responde algum processo ou inquérito" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="respondeProcessoLocal" label="Em qual Cidade/Estado" disabled={!values.respondeProcesso} />
+                        <FormInput name="respondeProcessoLocal" label="Em qual Cidade/Estado?" disabled={!values.respondeProcesso} />
                     </FormColumn>
                 </FormColumn>
-            </FormRow>
-            <FormRow className="mt-5">
-                <FormColumn span={6}>
-                    <FormCheckbox name="desacordoLei" label="Está em desacordo com a lei" />
-                    <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="desacordoLeiMotivo" label="Porquê" disabled={!values.desacordoLei} />
-                    </FormColumn>
-                </FormColumn>
-                <FormColumn span={6} className="pl-4">
-                        <FormCheckbox name="tornozeleiraEletronica" label="Faz uso de tornozeleira eletrônica" />
-                        <FormColumn span={8} className={cloneAndAddClass(classNamesSubSection, "pt-3")}>
-                            <FormCheckbox name="tornozeleiraEletronicaCentralMonitoramento" label="Informou a central de monitoramento" disabled={!values.tornozeleiraEletronica} />
-                        </FormColumn>
-                    </FormColumn>
             </FormRow>
             <FormRow>
-                <FormColumn span={6} className="mt-4">
+                <FormColumn span={6} >
+                    <FormCheckbox name="tornozeleiraEletronica" label="Faz uso de tornozeleira eletrônica" />
+                    <FormColumn span={8} className={cloneAndAddClass(classNamesSubSection)}>
+                        <FormCheckbox name="tornozeleiraEletronicaCentralMonitoramento" label="Informou a central de monitoramento" disabled={!values.tornozeleiraEletronica} />
+                    </FormColumn>
+                </FormColumn>
+                <FormColumn span={6} >
+                    <FormCheckbox name="desacordoLei" label="Está em desacordo com a lei" />
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="desacordoLeiMotivo" label="Porquê?" disabled={!values.desacordoLei} />
+                    </FormColumn>
+                </FormColumn>
+            </FormRow>
+            <FormRow>
+                <FormColumn span={6} >
                     <FormCheckbox name="cumpriuPena" label="Já cumpriu pena" />
                 </FormColumn>
             </FormRow>

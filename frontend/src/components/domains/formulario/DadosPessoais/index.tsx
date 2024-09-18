@@ -1,4 +1,5 @@
 import { FormColumn } from "@/components/form/FormColumn";
+import { FormLabel } from "@/components/form/FormLabel";
 import { FormInput } from "@/components/form/FormInput";
 import { FormRow } from "@/components/form/FormRow";
 import { FormSection } from "@/components/form/FormSection";
@@ -41,28 +42,31 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
                 <FormColumn span={4}>
                     <FormInput name="etnia" label="Etnia" />
                 </FormColumn>
+            </FormRow>
+            <FormRow>
+                <FormLabel name="filiacao" className="mb-2">Filiação:</FormLabel>
                 <FormColumn span={4}>
-                    <FormInput name="filiacaoPai" label="Filiação: Pai" />
+                    <FormInput name="filiacaoPai" label="Pai" />
                 </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="mae" label="Mãe" />
                 </FormColumn>
+                <FormColumn span={4}>
+                    <FormInput name="enderecoFamiliar" label="Endereço do familiar" />
+                </FormColumn>
             </FormRow>
             <FormRow>
-                <FormColumn span={4}>
-                    <FormInput name="enderecoFamiliar" label="Endereço do Familiar" />
-                </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="telefone" label="Telefone" />
                 </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="whatsapp" label="WhatsApp" />
                 </FormColumn>
-            </FormRow>
-            <FormRow>
                 <FormColumn span={4}>
                     <FormInput name="escolaridade" label="Escolaridade" />
                 </FormColumn>
+            </FormRow>
+            <FormRow>
                 <FormColumn span={4}>
                     <FormInput name="profissao" label="Profissão" />
                 </FormColumn>
@@ -72,9 +76,10 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
             </FormRow>
             <FormRow>
                 <FormColumn span={6}>
-                    <FormCheckbox<InternosInsaltSchema> name="temFamiliaApoio" label="Tem Família que pode apoiá-lo" />
+                    <FormCheckbox<InternosInsaltSchema> name="temFamiliaApoio" label="Tem família que pode apoiá-lo?" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="nomeFamiliar" label="Nome do Familiar" disabled={!values.temFamiliaApoio} />
+                        <FormInput name="nomeFamiliar" label="Nome do familiar" disabled={!values.temFamiliaApoio} />
+                        <FormInput name="enderecoFamiliarApoio" label="Endereço do familiar" disabled={!values.temFamiliaApoio} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6} >

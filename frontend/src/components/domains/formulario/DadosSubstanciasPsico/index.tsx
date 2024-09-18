@@ -17,13 +17,13 @@ export function DadosSubstanciasPsicoInsalt() {
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="alcool" label="Álcool" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="alcoolInformacoes" label="O que levou você a fazer o uso, com que idade e por quê" disabled={!values.alcool} />
+                        <FormInput name="alcoolInformacoes" label="O que levou você a fazer o uso, com que idade e por quê?" disabled={!values.alcool} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="tabaco" label="Faz uso do tabaco" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="tabacoInformacoes" label="Com quantos anos começou" disabled={!values.tabaco} />
+                        <FormInput name="tabacoInformacoes" label="Com quantos anos começou?" disabled={!values.tabaco} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>
@@ -31,10 +31,10 @@ export function DadosSubstanciasPsicoInsalt() {
             <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="substancias" label="Substâncias em geral" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="substanciasMotivoUso" label="O que te levou a fazer uso das substância ou das substâncias" disabled={!values.substancias} />
+                        <FormInput name="substanciaMaiorUso" label="Qual a principal substância que você faz uso?" disabled={!values.substancias} />
                     </FormColumn>
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="substanciaMaiorUso" label="Qual a principal substância que você faz uso" disabled={!values.substancias} />
+                        <FormInput name="substanciasMotivoUso" label="O que te levou a fazer uso da(s) substância(s)?" disabled={!values.substancias} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>

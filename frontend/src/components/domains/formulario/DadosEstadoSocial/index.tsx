@@ -14,39 +14,38 @@ export function DadosEstadoSocialInsalt() {
     return (
         <FormSection title="5 - SOBRE O ESTADO SOCIAL">
             <FormRow>
-            <FormColumn span={6} >
-                    <FormCheckbox<InternosInsaltSchema> name="outroCentroRecuperacao" label="Já passou por outro Centro de Recuperação antes" />
-                    <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="outroCentroRecuperacaoQual" label="Qual" disabled={!values.outroCentroRecuperacao} />
-                    </FormColumn>
-                    <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="outroCentroRecuperacaoInformacoes" label="Por quanto tempo e por que saiu" disabled={!values.outroCentroRecuperacao} />
-                    </FormColumn>
-                </FormColumn>
                 <FormColumn span={6} >
                     <FormCheckbox<InternosInsaltSchema> name="situacaoRua" label="Estava em situação de rua" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="situacaoRuaInformacoes" label="Há quanto tempo e por quê" disabled={!values.situacaoRua} />
+                        <FormInput name="situacaoRuaInformacoes" label="Há quanto tempo e por quê?" disabled={!values.situacaoRua} />
+                    </FormColumn>
+                </FormColumn>
+                <FormColumn span={6} >
+                    <FormCheckbox<InternosInsaltSchema> name="outroCentroRecuperacao" label="Já passou por outro Centro de Recuperação antes" />
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="outroCentroRecuperacaoQual" label="Qual?" disabled={!values.outroCentroRecuperacao} />
+                    </FormColumn>
+                    <FormColumn span={8} className={classNamesSubSection}>
+                        <FormInput name="outroCentroRecuperacaoInformacoes" label="Por quanto tempo e por que saiu?" disabled={!values.outroCentroRecuperacao} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
-                <FormColumn span={6}>
+                <FormColumn span={4}>
                     <FormInput name="chegadaMissaoVida" label="Como chegou a Missão Vida?" />
                 </FormColumn>
-
-                <FormColumn span={6}>
-                    <FormInput name="chegadaMissaoVidaIgreja" label="Qual Igreja?" />
+                <FormColumn span={4}>
+                    <FormInput name="chegadaMissaoVidaIgreja" label="Se foi por uma Igreja, qual?" />
+                </FormColumn>
+                <FormColumn span={4}>
+                    <FormInput name="chegadaMissaoVidaSecretariaGov" label="Se foi por uma secretaria governamental, qual?" />
                 </FormColumn>
             </FormRow>
             <FormRow>
-                <FormColumn span={4}>
-                    <FormInput name="chegadaMissaoVidaSecretariaGov" label="Qual secretaria governamental?" />
-                </FormColumn>
-                <FormColumn span={4}>
+                <FormColumn span={6}>
                     <FormInput name="comoSente" label="Como se sente na situação em que você se encontra?" />
                 </FormColumn>
-                <FormColumn span={4}>
+                <FormColumn span={6}>
                     <FormInput name="objetivosAcolhido" label="Quais são os seus objetivos como acolhido na Missão Vida?" />
                 </FormColumn>
             </FormRow>
