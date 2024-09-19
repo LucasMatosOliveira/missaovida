@@ -4,10 +4,8 @@ import { useInternosInsalt } from "./hook";
 import { FormInput } from "@/components/form/FormInput";
 import { InternosInsaltSchema } from "./schema";
 import { useRouter } from "next/navigation";
-import { AppRoutes } from "@/commom/http/app-routes";
-import { FormSection } from "@/components/form/FormSection";
 import { setTabSufix, useTabs } from "@/components/tabs/hook";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TabsNav } from "@/components/tabs/TabsNav";
 import { TabsNavItem } from "@/components/tabs/TabsNavItem";
 import { TabsContainer } from "@/components/tabs/TabContainer";
@@ -22,7 +20,7 @@ import { TermosInsalt } from "./Termos";
 
 export function InternoInsalt({ idInterno, onDadosSalvos }: InternoInsaltProps) {
     const { formMethods } = useInternosInsalt({ idInterno, onDadosSalvos });
-    const { handleSubmit, formState: { errors, isSubmitting } } = formMethods;
+    const { handleSubmit, formState: { errors, isSubmitting }, watch, reset } = formMethods;
 
     const abasId = useMemo(() => setTabSufix({
         dadosPessoais: 'dadosPessoais',
@@ -33,6 +31,7 @@ export function InternoInsalt({ idInterno, onDadosSalvos }: InternoInsaltProps) 
         dadosVidaFamiliar: 'dadosVidaFamiliar',
         dadosTermos: 'dadosTermos',
     }), []);
+
 
     const tabsOptions = useTabs({ initalTab: abasId.dadosPessoais });
 
@@ -46,7 +45,7 @@ export function InternoInsalt({ idInterno, onDadosSalvos }: InternoInsaltProps) 
                 <TabsNav>
                     <TabsNavItem {...tabsOptions} tabId={abasId.dadosPessoais}>Dados Pessoais</TabsNavItem>
                     <TabsNavItem {...tabsOptions} tabId={abasId.dadosSaude}>Dados de Saúde</TabsNavItem>
-                    <TabsNavItem {...tabsOptions} tabId={abasId.dadosVidaJuridica} onClick={() => console.log(formMethods.getValues().foiPreso)}>Dados de Vida Jurídica</TabsNavItem>
+                    <TabsNavItem {...tabsOptions} tabId={abasId.dadosVidaJuridica}>Dados de Vida Jurídica</TabsNavItem>
                     <TabsNavItem {...tabsOptions} tabId={abasId.dadosSubstanciasPsico}>Dados de Substâncias Psicoativas</TabsNavItem>
                     <TabsNavItem {...tabsOptions} tabId={abasId.dadosEstadoSocial}>Dados de Estado Social</TabsNavItem>
                     <TabsNavItem {...tabsOptions} tabId={abasId.dadosTermos}>Termos</TabsNavItem>

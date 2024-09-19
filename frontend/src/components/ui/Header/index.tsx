@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import { SignOutButton } from '@/components/ui/SignOutButton';
 import { FormRow } from '@/components/form/FormRow';
 import { FormColumn } from '@/components/form/FormColumn';
+import { cloneAndAddClass } from '@/components/form';
 
-interface HeaderProps {
+interface HeaderProps extends HTMLAttributes<HTMLDivElement>{
   pageTitle?: string;
 }
 
-export function Header({ pageTitle }: HeaderProps) {
+export function Header({ pageTitle, className, ...props }: HeaderProps) {
 
   return (
-    <FormRow className='m-0'>
+    <FormRow className={cloneAndAddClass('m-0', className)}>
       <div className="header-fixed">
         <div className="header-contents">
         <FormColumn span={4}>

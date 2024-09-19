@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import { useRouter } from "next/navigation";
 import { AppRoutes } from "@/commom/http/app-routes";
 import { useEffect } from "react";

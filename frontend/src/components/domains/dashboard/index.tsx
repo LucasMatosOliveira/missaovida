@@ -4,15 +4,15 @@ import { columns, User } from "@/components/form/Grid/columns";
 import { useEffect, useState } from "react";
 
 export async function getUsers(): Promise<User[]> {
-    const res = await fetch(
-      'https://64a6f5fc096b3f0fcc80e3fa.mockapi.io/api/users'
-    )
-    const data = await res.json()
-    return data
-  }
+  const res = await fetch(
+    'https://64a6f5fc096b3f0fcc80e3fa.mockapi.io/api/users'
+  )
+  const data = await res.json()
+  return data
+}
 
-export function DashboardGrid({ idInterno, onDadosSalvos}: DashboardProps) {
-    const [userData, setUserData] = useState<User[]>([]);
+export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardProps) {
+  const [userData, setUserData] = useState<User[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,15 +23,12 @@ export function DashboardGrid({ idInterno, onDadosSalvos}: DashboardProps) {
   }, []);
 
   return (
-    <section className='py-24 bg-white flex justify-center items-center' style={{ backgroundColor: 'rgb(243, 244, 246)' }}>
-      <div className='container bg-white p-3 rounded-lg text-black custom-border'>
-        <DataTable columns={columns} data={userData} />
-      </div>
-    </section>
+    <DataTable columns={columns} data={userData} actionsAddTab={newTab}/>
   )
 }
 
 export interface DashboardProps {
-    idInterno?: string;
-    onDadosSalvos?: (interno: any, isNovo: boolean) => void;
+  idInterno?: string;
+  onDadosSalvos?: (interno: any, isNovo: boolean) => void;
+  newTab?: () => void;
 }
