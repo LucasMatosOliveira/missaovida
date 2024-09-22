@@ -6,8 +6,6 @@ export function TermosInsalt() {
     return (
         <div>
             <TermoGuardaBensInsalt/>
-            <TermoResponsabilidadeInsalt/>
-            <TermoAltaInsalt/>
         </div>
     )
 }

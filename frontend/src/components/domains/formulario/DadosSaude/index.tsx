@@ -66,7 +66,7 @@ export function DadosSaudeInsalt() {
                 <FormColumn span={4} >
                     <FormCheckbox<InternosInsaltSchema> name="doencas" label="Apresenta alguma doença" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="doencaCoracaoTipo" label="Qual doença?" disabled={!values.doencas} />
+                        <FormInput name="doencasQual" label="Qual doença?" disabled={!values.doencas} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>
