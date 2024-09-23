@@ -59,7 +59,6 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
                 ? await api.inserir(dados, state.token!)
                 : await api.alterar(idInterno, dados, state.token!);
 
-
             toast.success('Dados salvos com sucesso')
 
         }

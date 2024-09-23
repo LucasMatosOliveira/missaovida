@@ -52,6 +52,7 @@ export function UseLoginPage() {
 
             const data = await response.json();
             console.log({ data });
+            localStorage.setItem('token', data.token);
             setToken(data.token);
 
             router.push(AppRoutes.Dashboard());

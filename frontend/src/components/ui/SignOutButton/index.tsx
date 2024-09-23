@@ -8,6 +8,7 @@ import { ButtonHTMLAttributes } from 'react';
 
 export function SignOutButton({className, ...props}: SignOutButtonProps) {
     const handleSignOut = async () => {
+        localStorage.clear();
         await signOut({ callbackUrl: AppRoutes.Login() });
     };
 
