@@ -35,23 +35,18 @@ import { Input } from '@/components/ui/input';
 import { AppRoutes } from '@/commom/http/app-routes';
 import { useRouter } from 'next/navigation';
 
-import Header from './header';
-import { createFakeTempGUID } from '@/commom/primitives/guid';
-import { tabsState, addTab } from '@/store/tabs';
-import { useSnapshot } from 'valtio';
-import { Cadastro } from '@/components/domains/Cadastro';
-import { InternoInsalt } from '@/components/domains/formulario';
-
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
-    actionsAddTab?: () => void;
+    actionsAddTab?: (idInterno: string) => void;
+    onAlterar?: (idInterno: string) => void;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
-    actionsAddTab
+    actionsAddTab,
+    onAlterar
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -79,20 +74,20 @@ export function DataTable<TData, TValue>({
     const handleClick = () => {
         router.push(AppRoutes.Internos());
     };
-
+    console.log('ABA')
     return (
         <>
             <div className="flex items-center justify-between">
                 <div className="pr-4">
-                    <Button variant="outline" className="ml-auto text-black" onClick={actionsAddTab}>
+                    <Button variant="outline" className="ml-auto text-black" onClick={() => actionsAddTab?.(undefined!)}>
                         Novo Interno
                     </Button>
                 </div>
                 <div className="flex items-center py-4">
                     <Input placeholder="Procurar por nome..." className="max-w-sm"
-                        value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+                        value={(table.getColumn('nome_acolhido')?.getFilterValue() as string) ?? ''}
                         onChange={(event) =>
-                            table.getColumn('name')?.setFilterValue(event.target.value)
+                            table.getColumn('nome_acolhido')?.setFilterValue(event.target.value)
                         }
                     />
                 </div>

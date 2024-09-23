@@ -10,10 +10,10 @@ export function Filho({ index, onDelete }: FilhoProps) {
             <ListItemColumn>
                 <FormRow className="m-2 mb-3">
                     <FormColumn span={6}>
-                        <FormInput name="nome" label="Nome" />
+                        <FormInput name={`filhos.${index}.nome`} label="Nome" />
                     </FormColumn>
                     <FormColumn span={6} className="mt-3">
-                        <FormCheckbox name="pagaPensao" label="Paga pensão" />
+                        <FormCheckbox name={`filhos.${index}.pagaPensao`} label="Paga pensão" />
                     </FormColumn>
                 </FormRow>
             </ListItemColumn>
@@ -28,3 +28,4 @@ export interface FilhoProps {
     onDelete: () => void;
     index: number;
 }
+

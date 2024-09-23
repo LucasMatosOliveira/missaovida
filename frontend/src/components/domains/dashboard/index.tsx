@@ -1,34 +1,40 @@
-"use client"
+"use client";
 import { DataTable } from "@/components/form/Grid";
-import { columns, User } from "@/components/form/Grid/columns";
+import { createColumns, User } from "@/components/form/Grid/columns"; // Atualize para importar createColumns
 import { useEffect, useState } from "react";
-
-export async function getUsers(): Promise<User[]> {
-  const res = await fetch(
-    'https://64a6f5fc096b3f0fcc80e3fa.mockapi.io/api/users'
-  )
-  const data = await res.json()
-  return data
-}
+import { InternosApi } from "../formulario/internos.api";
+import { authState } from "@/store/login";
+import { useSnapshot } from "valtio";
 
 export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardProps) {
   const [userData, setUserData] = useState<User[]>([]);
+  const state = useSnapshot(authState);
 
   useEffect(() => {
-    async function fetchData() {
-      const data = await getUsers();
-      setUserData(data);
-    }
+    const fetchData = async () => {
+      const api = new InternosApi();
+      const res = await api.getInternosForGrid(state.token!);
+      const teste = await api.getInternoPorId(res[0].id_acolhido, state.token!);
+      setUserData(res);
+    };
+
     fetchData();
-  }, []);
+  }, [state.token]);
+
+  const handleAlterar = (id: string) => {
+    newTab?.(id);
+  };
+
+  const columns = createColumns(handleAlterar);
+  console.log(columns)
 
   return (
-    <DataTable columns={columns} data={userData} actionsAddTab={newTab}/>
-  )
+    <DataTable columns={columns} data={userData} actionsAddTab={newTab} onAlterar={handleAlterar} />
+  );
 }
 
 export interface DashboardProps {
   idInterno?: string;
   onDadosSalvos?: (interno: any, isNovo: boolean) => void;
-  newTab?: () => void;
+  newTab?: (idInterno: string) => void;
 }

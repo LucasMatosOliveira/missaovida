@@ -1,79 +1,80 @@
-import { ColumnDef } from '@tanstack/react-table'
-
-import { MoreHorizontal, ArrowUpDown } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
+import { ColumnDef } from '@tanstack/react-table';
+import { MoreHorizontal, ArrowUpDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import Icon from 'react-icons-kit';
+import {chevronDown} from 'react-icons-kit/fa/chevronDown'
 
 export type User = {
-  id: string
-  name: string
-  emaiL: string
-  image: string
-  lastSeen: string
-}
+  id_acolhido: string;
+  name: string;
+  email: string;
+  image: string;
+  lastSeen: string;
+};
 
-export const columns: ColumnDef<User>[] = [
+export const createColumns = (onAlterar?: (idInterno: string) => void): ColumnDef<User>[] => [
   {
-    accessorKey: 'name',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Nome
-          <ArrowUpDown className='ml-2 h-4 w-4' />
-        </Button>
-      )
-    }
+    accessorKey: 'nome_acolhido',
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+      >
+        Nome
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
   },
   {
-    accessorKey: 'email',
-    header: 'Email'
+    accessorKey: 'naturalidade',
+    header: 'Naturalidade',
   },
   {
-    accessorKey: 'lastSeen',
-    header: 'Data de Criação',
+    accessorKey: 'data_nascimento',
+    header: 'Data de Nascimento',
     cell: ({ row }) => {
-      const date = new Date(row.getValue('lastSeen'))
-      const formatted = date.toLocaleDateString()
-      return <div className='font-medium'>{formatted}</div>
-    }
+      const date = new Date(row.getValue('data_nascimento'));
+      const formatted = date.toLocaleDateString();
+      return <div className="font-medium">{formatted}</div>;
+    },
   },
   {
     id: 'actions',
     cell: ({ row }) => {
-      const user = row.original
+      const user = row.original;
 
       return (
-
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='default' className='h-8 w-8 p-0 border-black'>
-              <span className='sr-only'>Open menu</span>
+            <Button variant="default" className="h-8 w-8 p-0 border-black hover:bg-slate-700">
+              <Icon icon={chevronDown} className='text-gray-500 '/>
+              <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align='end'>
+          <DropdownMenuContent align="end">
             <DropdownMenuLabel>Ações</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user.id)}
+              onClick={() => {
+                if (onAlterar) {
+                  onAlterar(user.id_acolhido);
+                }
+              }}
             >
-              Visualizar
+              Visualizar/Editar
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Editar</DropdownMenuItem>
             <DropdownMenuItem>Desativar</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
-    }
-  }
-]
+      );
+    },
+  },
+];

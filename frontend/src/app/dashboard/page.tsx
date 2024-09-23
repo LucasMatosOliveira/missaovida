@@ -29,25 +29,27 @@ export default function Dashboard() {
         }
     }, [session, status, router, showSpinner, hideSpinner]);
 
-    const newTab = (content: ReactNode, title: string = "Novo Interno", isDefault: boolean = false) => {
+    const newTab = ({ content, title = "Novo Interno", isDefault = false, idInterno,}: {
+        content: ReactNode; title?: string; isDefault?: boolean; idInterno?: string;
+      }) => {
         const newId = id.next();
         addTab(newId, title, content, isDefault);
-    };
+      };
 
     console.log("Componente renderizado");
 
     useEffect(() => {
         if (session && !isTabCreated) {
             console.log("Criando nova aba padrão");
-            const defaultContent = <DashboardGrid newTab={() => newTab(<InternoInsalt />)} />;
-            newTab(defaultContent, "Internos", true);
+            const defaultContent = <DashboardGrid newTab={() => newTab({content: <InternoInsalt />})} />;
+            newTab({content: defaultContent, title: "Internos", isDefault: true});
             setIsTabCreated(true);
         }
     }, [session]);
 
     return (
         <PageLayout title="Dashboard">
-            <DashboardGrid newTab={() => { newTab(<InternoInsalt />); }} />
+            <DashboardGrid newTab={(idInterno) => newTab({content: <InternoInsalt/>, idInterno})} />
         </PageLayout>
     );
 }
