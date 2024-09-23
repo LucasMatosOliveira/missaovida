@@ -6,7 +6,7 @@ import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
 import { FormEye } from "../FormEye";
 
-export const FormInput = <TModel,>({ label, name, disabled, help, step = "any", transform = "uppercase", type }: FormInputProps<TModel>) => {
+export const FormInput = <TModel,>({ label, name, disabled, help, step = "any", transform = "none", type }: FormInputProps<TModel>) => {
     const context = useFormContext();
     const { control, formState: { errors }, getValues } = context;
     const erro = obterValor(errors, name as string);

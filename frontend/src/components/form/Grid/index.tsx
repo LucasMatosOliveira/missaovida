@@ -98,7 +98,7 @@ export function DataTable<TData, TValue>({
                             Colunas
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
+                    <DropdownMenuContent align="end" className='text-black'>
                         {table
                             .getAllColumns()
                             .filter((column) => column.getCanHide())
@@ -106,7 +106,7 @@ export function DataTable<TData, TValue>({
                                 return (
                                     <DropdownMenuCheckboxItem
                                         key={column.id}
-                                        className="capitalize"
+                                        className="capitalize text-black"
                                         checked={column.getIsVisible()}
                                         onCheckedChange={(value) =>
                                             column.toggleVisibility(!!value)
@@ -121,13 +121,13 @@ export function DataTable<TData, TValue>({
             </div>
 
             <div className="rounded-md border">
-                <Table>
+                <Table >
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <TableRow key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead key={header.id} className='text-black'>
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(

@@ -15,9 +15,9 @@ import {chevronDown} from 'react-icons-kit/fa/chevronDown'
 export type User = {
   id_acolhido: string;
   name: string;
-  email: string;
+  naturalidade: string;
   image: string;
-  lastSeen: string;
+  data_nascimento: string;
 };
 
 export const createColumns = (onAlterar?: (idInterno: string) => void): ColumnDef<User>[] => [
@@ -25,17 +25,22 @@ export const createColumns = (onAlterar?: (idInterno: string) => void): ColumnDe
     accessorKey: 'nome_acolhido',
     header: ({ column }) => (
       <Button
-        variant="ghost"
+        variant='ghost'
+        className='text-black'
         onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
       >
         Nome
-        <ArrowUpDown className="ml-2 h-4 w-4" />
+        <ArrowUpDown className="ml-2 h-4 w-4 text-black" />
       </Button>
     ),
   },
   {
     accessorKey: 'naturalidade',
     header: 'Naturalidade',
+    cell: ({ row }) => {
+      const value = row.getValue('naturalidade')
+      return <div className="font-medium">{value as string}</div>;
+    }
   },
   {
     accessorKey: 'data_nascimento',
@@ -64,7 +69,8 @@ export const createColumns = (onAlterar?: (idInterno: string) => void): ColumnDe
             <DropdownMenuItem
               onClick={() => {
                 if (onAlterar) {
-                  onAlterar(user.id_acolhido);
+                  console.log({testeIdInterno: user.id_acolhido})
+                  onAlterar(user.id_acolhido.toString());
                 }
               }}
             >

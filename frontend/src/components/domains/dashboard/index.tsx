@@ -15,6 +15,7 @@ export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardPro
       const api = new InternosApi();
       const res = await api.getInternosForGrid(state.token!);
       const teste = await api.getInternoPorId(res[0].id_acolhido, state.token!);
+      console.log({teste})
       setUserData(res);
     };
 
@@ -22,11 +23,13 @@ export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardPro
   }, [state.token]);
 
   const handleAlterar = (id: string) => {
+    console.log({id})
+    console.log(newTab)
     newTab?.(id);
   };
 
   const columns = createColumns(handleAlterar);
-  console.log(columns)
+  console.log({columns});
 
   return (
     <DataTable columns={columns} data={userData} actionsAddTab={newTab} onAlterar={handleAlterar} />
