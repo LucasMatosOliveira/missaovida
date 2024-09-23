@@ -6,10 +6,11 @@ import { PageLayout } from "@/components/ui/Page";
 import { AppRoutes } from "@/commom/http/app-routes";
 import { useRouter } from "next/navigation";
 import { useSpinner } from "@/contexts/SpinnerContext";
-import { addTab } from "@/store/tabs";
+import { addTab, tabsState } from "@/store/tabs";
 import { createFakeTempGUID } from "@/commom/primitives/guid";
 import { DashboardGrid } from "@/components/domains/dashboard";
 import { InternoInsalt } from "@/components/domains/formulario";
+import { useSnapshot } from "valtio";
 
 export default function Dashboard() {
     const { showSpinner, hideSpinner } = useSpinner();
@@ -17,6 +18,8 @@ export default function Dashboard() {
     const id = useMemo(() => createFakeTempGUID(), []);
     const router = useRouter();
     const [isTabCreated, setIsTabCreated] = useState(false);
+
+    const snapshot = useSnapshot(tabsState);
 
     useEffect(() => {
         if (status === "loading") {
@@ -46,8 +49,11 @@ export default function Dashboard() {
         }
     }, [session]);
 
+    const activeTab = snapshot.tabs.find(tab => tab.id === snapshot.activeTabId);
+    const pageTitle = activeTab?.isDefault ? "Dashboard" : "Interno";
+
     return (
-        <PageLayout title="Dashboard">
+        <PageLayout title={pageTitle}>
 
         </PageLayout>
     );

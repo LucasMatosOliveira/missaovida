@@ -38,6 +38,10 @@ body {
   }
 }
 
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;

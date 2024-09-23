@@ -68,6 +68,29 @@ export class InternosApi {
         return data;
     }
 
+    public async inativar(id: string, dados: Interno, token: string): Promise<Interno> {
+
+        dados.ativo = false
+
+        console.log(JSON.stringify(dados))
+
+        const response = await fetch(this._postUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.status} ${response.statusText}`);
+        }
+        const data = await response.json();
+        console.log({data, response});
+        return data;
+    }
+
     public async getInternosForGrid(token: string) {
         const response = await fetch(this._url, {
             headers: {

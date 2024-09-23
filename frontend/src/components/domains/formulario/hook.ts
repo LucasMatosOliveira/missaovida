@@ -7,6 +7,7 @@ import { useSpinner } from "@/contexts/SpinnerContext";
 import { useSnapshot } from "valtio";
 import { authState } from "@/store/login";
 import { createFakeTempGUID } from "@/commom/primitives/guid";
+import { toast } from "react-toastify";
 
 export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltArgs) {
     const formMethods = useForm<InternosInsaltSchema>({
@@ -56,7 +57,11 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
             const api = new InternosApi()
             const response = isNovo
                 ? await api.inserir(dados, state.token!)
-                : await api.alterar(idInterno, dados, state.token!)
+                : await api.alterar(idInterno, dados, state.token!);
+
+
+            toast.success('Dados salvos com sucesso')
+
         }
         catch (error) {
             console.log(error);
