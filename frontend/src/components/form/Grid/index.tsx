@@ -38,8 +38,8 @@ import { useRouter } from 'next/navigation';
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
-    actionsAddTab?: (idInterno: string) => void;
-    onAlterar?: (idInterno: string) => void;
+    actionsAddTab?: (idInterno: string, descicao: string) => void;
+    onAlterar?: (idInterno: string, descricao: string) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -79,7 +79,7 @@ export function DataTable<TData, TValue>({
         <>
             <div className="flex items-center justify-between">
                 <div className="pr-4">
-                    <Button variant="outline" className="ml-auto text-black" onClick={() => actionsAddTab?.(undefined!)}>
+                    <Button variant="outline" className="ml-auto text-black" onClick={() => actionsAddTab?.(undefined!, 'Novo interno')}>
                         Novo Interno
                     </Button>
                 </div>

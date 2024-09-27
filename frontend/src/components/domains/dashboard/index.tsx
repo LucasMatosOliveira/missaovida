@@ -24,10 +24,8 @@ export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardPro
     fetchData();
   }, [state.token, token]);
 
-  const handleAlterar = (id: string) => {
-    console.log({id})
-    console.log(newTab)
-    newTab?.(id);
+  const handleAlterar = (id: string, nome: string) => {
+    newTab?.(id, nome);
   };
 
   const columns = createColumns(handleAlterar);
@@ -41,5 +39,5 @@ export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardPro
 export interface DashboardProps {
   idInterno?: string;
   onDadosSalvos?: (interno: any, isNovo: boolean) => void;
-  newTab?: (idInterno: string) => void;
+  newTab?: (idInterno: string, descicao: string) => void;
 }

@@ -52,8 +52,8 @@ export default function Dashboard(){
                 console.log("Criando nova aba padrão");
                 const defaultContent = (
                     <DashboardGrid
-                        newTab={(idInterno) =>
-                            newTab({ content: <InternoInsalt idInterno={idInterno} /> })
+                        newTab={(idInterno, title) =>
+                            newTab({ content: <InternoInsalt idInterno={idInterno} />, title: title })
                         }
                     />
                 );
