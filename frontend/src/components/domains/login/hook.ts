@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { UserLoginSchema, userLoginSchema } from "./schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { getSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { jwtDecode } from 'jwt-decode';
 import { AppRoutes } from "@/commom/http/app-routes";
+import { UserLoginSchema, userLoginSchema } from "./schema";
 import { setToken } from "@/store/login";
 
 export function UseLoginPage() {
@@ -29,40 +31,52 @@ export function UseLoginPage() {
             alert("Username ou senha incorretos");
             return;
         }
+        const token = response?.ok ? (await getToken()) : null;
 
-        const loginData = {
-            username: "string",
-            password: "string"
-        };
-
-        try {
-            const response = await fetch('http://189.126.111.132:8001/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(loginData)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Erro:', errorData);
-                throw new Error('Erro na autenticação');
-            }
-
-            const data = await response.json();
-            console.log({ data });
-            localStorage.setItem('token', data.token);
-            setToken(data.token);
-
+        if (token) {
+            localStorage.setItem('token', token);
+            setToken(token);
             router.push(AppRoutes.Dashboard());
-        } catch (error) {
-            console.error('Erro ao autenticar:', error);
+        } else {
+            console.error('Token não encontrado após autenticação');
+            alert("Erro ao autenticar, tente novamente.");
         }
+
+        // useEffect(() => {
+        //     if(!token)
+        //         return;
+
+        //     setTimeout(() => {
+        //         (async () => {
+        //             localStorage.clear();
+        //             await signOut({ callbackUrl: AppRoutes.Login() });
+        //         })();
+        //     }, 3600000)
+        // }, [token]);
+
+        // useEffect(() => {
+        //     if (!token) return;
+
+        //     const decoded = jwtDecode(token);
+        //     const currentTime = Date.now() / 1000;
+        //     const timeLeft = (decoded.exp! - currentTime) * 1000;
+
+        //     const logoutTimer = setTimeout(async () => {
+        //         localStorage.clear();
+        //         await signOut({ callbackUrl: AppRoutes.Login() });
+        //     }, timeLeft);
+
+        //     return () => clearTimeout(logoutTimer);
+        // }, [token]);
     };
 
     return {
         handleSalvar,
         formMethods
     };
+}
+
+async function getToken() {
+    const session = await getSession();
+    return session?.user?.token;
 }

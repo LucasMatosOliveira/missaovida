@@ -5,9 +5,10 @@ import { obterValor } from "@/commom/primitives/object";
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
 import { FormEye } from "../FormEye";
+import { useAppFormContext } from "../hook";
 
 export const FormInput = <TModel,>({ label, name, disabled, help, step = "any", transform = "none", type }: FormInputProps<TModel>) => {
-    const context = useFormContext();
+    const context = useAppFormContext();
     const { control, formState: { errors }, getValues } = context;
     const erro = obterValor(errors, name as string);
     const erroMessage = erro ? (Array.isArray(erro) ? erro[0].message : erro.message) : null;

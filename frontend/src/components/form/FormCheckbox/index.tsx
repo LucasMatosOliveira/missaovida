@@ -5,9 +5,10 @@ import { FormLabel } from "../FormLabel";
 import { FormInfo } from "../FormInfo";
 import { FormError } from "../FormError";
 import { cloneAndAddClass } from "..";
+import { useAppFormContext } from "../hook";
 
 export const FormCheckbox = <TModel,>({ name, label, help, disabled, className }: FormCheckboxProps<TModel>) => {
-    const context = useFormContext();
+    const context = useAppFormContext();
     const { control } = context;
 
     const checkboxRef = useRef(null);

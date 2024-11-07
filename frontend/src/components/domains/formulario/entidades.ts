@@ -1,10 +1,10 @@
-interface AcolhidoFilho {
+export interface AcolhidoFilho {
     id: string;
     nome_filho: string;
     paga_pensao: boolean;
 }
 
-interface DadosSaude {
+export interface DadosSaude {
     tratamento_psiquiatrico: boolean;
     local_tratamento: string;
     medicamento_psicotropico: boolean;
@@ -30,7 +30,7 @@ interface DadosSaude {
     automutilacao: boolean;
 }
 
-interface VidaJuridica {
+export interface VidaJuridica {
     historico_prisao: boolean;
     motivo_prisao: string;
     processos: boolean;
@@ -42,7 +42,7 @@ interface VidaJuridica {
     cumpriu_pena: boolean;
 }
 
-interface Substancia {
+export interface Substancia {
     uso_alcool: boolean;
     motivo_alcool: string;
     uso_tabaco: boolean;
@@ -52,7 +52,7 @@ interface Substancia {
     motivo_outras_substancias: string;
 }
 
-interface EstadoSocial {
+export interface EstadoSocial {
     situacao_rua: boolean;
     motivos_rua: string;
     outros_centros: boolean;
@@ -65,7 +65,7 @@ interface EstadoSocial {
     objetivos: string;
 }
 
-interface TermoGuarda {
+export interface TermoGuarda {
     autorizacao_guarda: boolean;
     documentos_guardados: string;
     descricao_carteira: string;
@@ -74,7 +74,7 @@ interface TermoGuarda {
     outros_objetos: string;
 }
 
-interface Interno {
+export interface Interno {
     id: string;
     nome_acolhido: string;
     naturalidade: string;
@@ -105,7 +105,7 @@ interface Interno {
     termo_guarda: TermoGuarda;
 }
 
-interface InternoReturn {
+export interface InternoReturn {
     id_acolhido: number;
     nome_acolhido: string;
     naturalidade: string;
@@ -199,3 +199,66 @@ interface InternoReturn {
     }[];
 }
 
+export enum EstadoUF {
+    AC = 12,
+    AL = 27,
+    AP = 16,
+    AM = 13,
+    BA = 29,
+    CE = 23,
+    DF = 53,
+    ES = 32,
+    GO = 52,
+    MA = 21,
+    MT = 51,
+    MS = 50,
+    MG = 31,
+    PA = 15,
+    PB = 25,
+    PR = 41,
+    PE = 26,
+    PI = 22,
+    RJ = 33,
+    RN = 24,
+    RS = 43,
+    RO = 11,
+    RR = 14,
+    SC = 42,
+    SP = 35,
+    SE = 28,
+    TO = 17,
+    AN = 91,
+    EX = 99
+}
+
+export const EstadoUFDisplay: Record<string, string> = {
+    [EstadoUF.AC]: 'AC',
+    [EstadoUF.AL]: 'AL',
+    [EstadoUF.AP]: 'AP',
+    [EstadoUF.AM]: 'AM',
+    [EstadoUF.BA]: 'BA',
+    [EstadoUF.CE]: 'CE',
+    [EstadoUF.DF]: 'DF',
+    [EstadoUF.ES]: 'ES',
+    [EstadoUF.GO]: 'GO',
+    [EstadoUF.MA]: 'MA',
+    [EstadoUF.MT]: 'MT',
+    [EstadoUF.MS]: 'MS',
+    [EstadoUF.MG]: 'MG',
+    [EstadoUF.PA]: 'PA',
+    [EstadoUF.PB]: 'PB',
+    [EstadoUF.PR]: 'PR',
+    [EstadoUF.PE]: 'PE',
+    [EstadoUF.PI]: 'PI',
+    [EstadoUF.RJ]: 'RJ',
+    [EstadoUF.RN]: 'RN',
+    [EstadoUF.RS]: 'RS',
+    [EstadoUF.RO]: 'RO',
+    [EstadoUF.RR]: 'RR',
+    [EstadoUF.SC]: 'SC',
+    [EstadoUF.SP]: 'SP',
+    [EstadoUF.SE]: 'SE',
+    [EstadoUF.TO]: 'TO',
+    [EstadoUF.AN]: 'AN',
+    [EstadoUF.EX]: 'EX',
+}

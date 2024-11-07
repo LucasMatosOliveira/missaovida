@@ -8,11 +8,12 @@ import { useSnapshot } from "valtio";
 import { authState } from "@/store/login";
 import { createFakeTempGUID } from "@/commom/primitives/guid";
 import { toast } from "react-toastify";
+import { useAppForm } from "@/components/form/hook";
+import { AcolhidoFilho, Interno, InternoReturn } from "./entidades";
 
 export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltArgs) {
-    const formMethods = useForm<InternosInsaltSchema>({
+    const formMethods = useAppForm<InternosInsaltSchema>({
         resolver: zodResolver(internosInsaltSchema),
-        mode: 'onChange',
         defaultValues: {
             foiPreso: false
         }
@@ -50,7 +51,7 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
 
     const handleSalvar = async (data: InternosInsaltSchema) => {
         const isNovo = !idInterno;
-
+        console.log('teste')
         const dados = mapSchemaForType(data);
 
         try {
@@ -90,7 +91,7 @@ const mapSchemaForType = (data: InternosInsaltSchema): Interno => {
         escolaridade_acolhido: data.escolaridade || '',
         profissao_acolhido: data.profissao || '',
         estado_civil_acolhido: data.estadoCivil || '',
-        apoio_familiar: data.temFamiliaApoio || false,
+        apoio_familiar: data.temFamiliaApoio || (!!data.nomeFamiliar),
         nome_apoio: data.nomeFamiliar || '',
         endereco_apoio: data.enderecoFamiliarApoio || '',
         religiao_acolhido: data.religiao || false,

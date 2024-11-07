@@ -1,17 +1,20 @@
+import { useFormContext } from "react-hook-form";
 import { FormColumn } from "@/components/form/FormColumn";
 import { FormLabel } from "@/components/form/FormLabel";
 import { FormInput } from "@/components/form/FormInput";
 import { FormRow } from "@/components/form/FormRow";
 import { FormSection } from "@/components/form/FormSection";
-import { FilhosInsalt } from "./Filhos";
 import { FormCheckbox } from "@/components/form/FormCheckbox";
 import { InternosInsaltSchema } from "../schema";
-import { useFormContext } from "react-hook-form";
+import { FormInputMask } from "@/components/form/FormInputMask";
+import { Masks } from "@/commom/form/mask";
+import { FilhosInsalt } from "./Filhos";
+import { useAppFormContext } from "@/components/form/hook";
 
 const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
 export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
-    const { getValues, watch } = useFormContext();
+    const { getValues, watch } = useAppFormContext();
     const values = watch();
 
     return (
@@ -24,7 +27,7 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
                     <FormInput name="naturalidade" label="Naturalidade (Cidade/estado)" />
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInput name="cpf" label="CPF" />
+                    <FormInputMask name="cpf" label="CPF" mask={Masks.CPF}/>
                 </FormColumn>
             </FormRow>
             <FormRow>
@@ -57,10 +60,10 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
             </FormRow>
             <FormRow>
                 <FormColumn span={4}>
-                    <FormInput name="telefone" label="Telefone" />
+                    <FormInputMask name="telefone" label="Telefone" mask={Masks.ToggleTelefone}/>
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInput name="whatsapp" label="WhatsApp" />
+                    <FormInputMask name="whatsapp" label="WhatsApp" mask={Masks.ToggleTelefone}/>
                 </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="escolaridade" label="Escolaridade" />

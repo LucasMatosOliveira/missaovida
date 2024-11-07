@@ -8,6 +8,7 @@ export function TabsNavItem({ className, children, tabId, active, errorsAlert, o
     const { tabsIds } = useTabErros({ context: errorsAlert?.formRef.current ?? null, errors: errorsAlert?.error ?? {} });
 
     const handleClick = setTabActive ? (event: MouseEvent<HTMLLIElement>) => {
+        event.preventDefault();
         setTabActive(tabId);
         onClick?.(event);
     } : onClick;

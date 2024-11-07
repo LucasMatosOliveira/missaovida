@@ -4,14 +4,16 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { createFakeTempGUID } from "@/commom/primitives/guid";
 import { List, ListBody, ListHeader, ListHeaderActions, ListHeaderColumn, ListHeaderBtnAdd } from "@/components/form/List";
 import { Filho } from "./Filho";
+import { useAppFieldArray, useAppFormContext } from "@/components/form/hook";
+import { InternosInsaltSchema } from "../../schema";
 
 export function FilhosInsalt() {
     const fakeId = useMemo(() => createFakeTempGUID(), []);
 
-    const context = useFormContext();
+    const context = useAppFormContext();
     const { control } = context;
 
-    const { fields, append, remove } = useFieldArray({
+    const { fields, append, remove } = useAppFieldArray<InternosInsaltSchema>({
         control,
         name: 'filhos'
     });
@@ -19,8 +21,8 @@ export function FilhosInsalt() {
     const addFilho = () => {
         append({
             id: fakeId.next(),
-            nome: '',
-            idade: 0
+            nome: undefined!,
+            idade: undefined!
         });
     }
 
@@ -37,7 +39,7 @@ export function FilhosInsalt() {
                 </ListHeader>
                 <ListBody>
                     {fields.map((field, index) => (
-                        <Filho index={index} onDelete={() => remove(index)} />
+                        <Filho key={field.id} index={index} onDelete={() => remove(index)} />
                     ))}
                 </ListBody>
             </List>

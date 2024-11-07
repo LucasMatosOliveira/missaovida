@@ -1,8 +1,9 @@
 import { obterValor } from "@/commom/primitives/object";
 import { useFormContext } from "react-hook-form";
+import { useAppFormContext } from "../hook";
 
 export function FormError({name}: FormErrorProps) {
-    const context = useFormContext();
+    const context = useAppFormContext();
     const {formState: {errors}} = context;
     const error = obterValor(errors, name);
     const errorMessage = error? Array.isArray(error) ? error[0] : error.message : null;

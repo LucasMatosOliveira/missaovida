@@ -16,8 +16,8 @@ export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardPro
     const fetchData = async () => {
       const api = new InternosApi();
       const res = await api.getInternosForGrid(token!);
-      const teste = await api.getInternoPorId(res[0].id_acolhido, state.token!);
-      console.log({teste})
+      // const teste = await api.getInternoPorId(res[0].id_acolhido, state.token!);
+      // console.log({teste})
       setUserData(res);
     };
 

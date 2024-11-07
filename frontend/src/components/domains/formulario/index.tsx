@@ -1,12 +1,9 @@
 "use client"
 import { FormProvider } from "react-hook-form";
 import { useInternosInsalt } from "./hook";
-import { FormInput } from "@/components/form/FormInput";
 import { InternosInsaltSchema } from "./schema";
-import { z } from "zod";
-import { useRouter } from "next/navigation";
 import { setTabSufix, useTabs } from "@/components/tabs/hook";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { TabsNav } from "@/components/tabs/TabsNav";
 import { TabsNavItem } from "@/components/tabs/TabsNavItem";
 import { TabsContainer } from "@/components/tabs/TabContainer";

@@ -4,10 +4,12 @@ import { FormSection } from "@/components/form/FormSection";
 import { FormInput } from "@/components/form/FormInput";
 import { FormCheckbox } from "@/components/form/FormCheckbox";
 import { InternosInsaltSchema } from "../../schema";
+import { AssinaturaPdfButton } from "@/components/reports/pdf";
 
 export function TermoGuardaBensInsalt() {
     return (
         <FormSection title="6 - TERMO DE GUARDA DE BENS E DOCUMENTOS">
+            <div className="page-teste">
             <FormRow>
                 <FormColumn span={12}>
                     <FormCheckbox<InternosInsaltSchema>
@@ -16,7 +18,7 @@ export function TermoGuardaBensInsalt() {
                     />
                 </FormColumn>
             </FormRow>
-            <FormRow> 
+            <FormRow>
                 <FormColumn span={12}>
                     <FormInput name="autorizacaoGuardaDocumentosQuais" label="Quais documentos serão guardados?" />
                 </FormColumn>
@@ -37,6 +39,12 @@ export function TermoGuardaBensInsalt() {
                     <FormInput name="objetoValorApresentado" label="Outros objetos de valor apresentados:" />
                 </FormColumn>
             </FormRow>
+            <FormRow>
+                <FormColumn>
+                    <AssinaturaPdfButton className="pt-2" action="open" />
+                </FormColumn>
+            </FormRow>
+            </div>
         </FormSection>
     );
 }

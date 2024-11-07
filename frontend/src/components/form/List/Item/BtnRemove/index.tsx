@@ -4,7 +4,7 @@ import { remove } from 'react-icons-kit/fa/remove';
 
 export function ListItemBtnRemove(props: ListItemBtnRemoveProps) {
     return (
-        <button {...props} className="vta-center">
+        <button {...props} className="vta-center" type="button">
             <Icon icon={remove} style={{ color: 'gray' }} />
         </button>
     );

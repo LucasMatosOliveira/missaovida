@@ -14,7 +14,7 @@ import { useSnapshot } from "valtio";
 
 export default function Dashboard(){
     const { showSpinner, hideSpinner } = useSpinner();
-    const { data: session, status } = useSession();
+    const { data: session, status} = useSession();
     const id = useMemo(() => createFakeTempGUID(), []);
     const router = useRouter();
     const hasDefaultTabCreated = useRef(false);
@@ -39,8 +39,6 @@ export default function Dashboard(){
         const newId = id.next();
         addTab(newId, title, content, isDefault);
     };
-
-    console.log("Componente renderizado");
 
     useEffect(() => {
         console.log("Status da sessão:", session);

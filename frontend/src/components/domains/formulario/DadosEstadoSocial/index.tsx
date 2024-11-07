@@ -5,11 +5,12 @@ import { FormInput } from "@/components/form/FormInput";
 import { useFormContext } from "react-hook-form";
 import { InternosInsaltSchema } from "../schema";
 import { FormCheckbox } from "@/components/form/FormCheckbox";
+import { useAppFormContext } from "@/components/form/hook";
 
 const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
 export function DadosEstadoSocialInsalt() {
-    const { getValues, watch } = useFormContext();
+    const { getValues, watch } = useAppFormContext();
     const values = watch();
     return (
         <FormSection title="5 - SOBRE O ESTADO SOCIAL">

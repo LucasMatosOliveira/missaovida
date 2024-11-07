@@ -1,4 +1,4 @@
-import { PropsWithChildren, ReactNode } from "react";
+import { PropsWithChildren, ReactNode, useMemo } from "react";
 import { Header } from "../Header";
 import { useSnapshot } from "valtio";
 import { tabsState, setActiveTab, closeTab } from "@/store/tabs";
@@ -15,11 +15,9 @@ export function PageLayout({ children, title }: PageLayoutProps) {
         closeTab(tabId);
     };
 
-    const activeTabContent = snapshot.activeTabId
+    const activeTabContent = useMemo(() => (snapshot.activeTabId
         ? snapshot.tabs.find(tab => tab.id === snapshot.activeTabId)?.props || <p>Nenhum conteúdo disponível</p>
-        : <p>Nenhuma aba ativa</p>;
-
-    console.log(snapshot)
+        : <p>Nenhuma aba ativa</p>), [snapshot.activeTabId])
 
     return (
         <div className="page-container">
