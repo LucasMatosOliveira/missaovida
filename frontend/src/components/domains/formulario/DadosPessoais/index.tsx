@@ -14,7 +14,7 @@ import { useAppFormContext } from "@/components/form/hook";
 const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
 export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
-    const { getValues, watch } = useAppFormContext();
+    const { watch } = useAppFormContext();
     const values = watch();
 
     return (
@@ -24,24 +24,27 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
                     <FormInput name="name" label="Nome" />
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInput name="naturalidade" label="Naturalidade (Cidade/estado)" />
+                    <FormInput name="cidade" label="Cidade" />
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInputMask name="cpf" label="CPF" mask={Masks.CPF}/>
+                    <FormInput name="estadoUf" label="Estado (Sigla)" />
                 </FormColumn>
             </FormRow>
             <FormRow>
+            <FormColumn span={4}>
+                    <FormInputMask name="cpf" label="CPF" mask={Masks.CPF}/>
+                </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="rg" label="RG" />
                 </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="orgaoExpedidor" label="Órgão Expedidor" />
                 </FormColumn>
+            </FormRow>
+            <FormRow>
                 <FormColumn span={4}>
                     <FormInput name="dataNascimento" label="Data de Nascimento" type="date" />
                 </FormColumn>
-            </FormRow>
-            <FormRow>
                 <FormColumn span={4}>
                     <FormInput name="etnia" label="Etnia" />
                 </FormColumn>

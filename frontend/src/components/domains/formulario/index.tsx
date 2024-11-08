@@ -1,7 +1,6 @@
 "use client"
 import { FormProvider } from "react-hook-form";
 import { useInternosInsalt } from "./hook";
-import { InternosInsaltSchema } from "./schema";
 import { setTabSufix, useTabs } from "@/components/tabs/hook";
 import { useMemo } from "react";
 import { TabsNav } from "@/components/tabs/TabsNav";
@@ -19,6 +18,8 @@ import { TermosInsalt } from "./Termos";
 export function InternoInsalt({ idInterno, onDadosSalvos }: InternoInsaltProps) {
     const { formMethods, handleSalvar } = useInternosInsalt({ idInterno, onDadosSalvos });
     const { handleSubmit, formState: { errors, isSubmitting }, watch, reset } = formMethods;
+
+    console.log({values: watch()})
 
     const abasId = useMemo(() => setTabSufix({
         dadosPessoais: 'dadosPessoais',

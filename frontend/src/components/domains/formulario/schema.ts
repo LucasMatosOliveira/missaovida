@@ -1,5 +1,5 @@
 import { z } from "@/commom/form/pt-zod";
-import { booleanCoerce } from "@/commom/form/form-validation-utils";
+import { booleanCoerce, numberCoerce } from "@/commom/form/form-validation-utils";
 
 export const filhoSchema = z.object({
     id: z.string(),
@@ -8,10 +8,11 @@ export const filhoSchema = z.object({
 });
 
 export const internosInsaltSchema = z.object({
-    id: z.string().optional(),
+    id: numberCoerce(z.number().optional()),
     name: z.string().optional(),
     cpf: z.string().optional(),
-    naturalidade: z.string().optional(),
+    cidade: z.string().optional(),
+    estadoUf: z.string().toUpperCase().optional(),
     rg: z.string().optional(),
     orgaoExpedidor: z.string().optional(),
     dataNascimento: z.string().optional(),
@@ -83,6 +84,18 @@ export const internosInsaltSchema = z.object({
     outroCentroRecuperacao: booleanCoerce(z.boolean()).optional(),
     outroCentroRecuperacaoQual: z.string().optional(),
     outroCentroRecuperacaoInformacoes: z.string().optional(),
+    /*Termo de alta do acolhido*/
+
+    nameAlta: z.string().optional(),
+    altaTerapeutica: booleanCoerce(z.boolean()).optional(),
+    altaDesistencia: booleanCoerce(z.boolean()).optional(),
+    altaAdministrativa: booleanCoerce(z.boolean()).optional(),
+    altaAbandono: booleanCoerce(z.boolean()).optional(),
+    altaJudicial: booleanCoerce(z.boolean()).optional(),
+    altaFalecimento: booleanCoerce(z.boolean()).optional(),
+    justificativaAlta: z.string().optional(),
+    nucleoAlta: z.string().optional(),
+    dataAlta: z.string().optional(),
 
     autorizacaoGuardaDocumentos: booleanCoerce(z.boolean()).optional(),
     autorizacaoGuardaDocumentosQuais: z.string().optional(),

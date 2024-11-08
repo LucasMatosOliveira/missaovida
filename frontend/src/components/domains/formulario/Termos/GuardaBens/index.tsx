@@ -41,7 +41,7 @@ export function TermoGuardaBensInsalt() {
             </FormRow>
             <FormRow>
                 <FormColumn>
-                    <AssinaturaPdfButton className="pt-2" action="open" />
+                    <AssinaturaPdfButton className="pt-2" action="open" type="button"/>
                 </FormColumn>
             </FormRow>
             </div>

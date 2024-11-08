@@ -75,7 +75,7 @@ export interface TermoGuarda {
 }
 
 export interface Interno {
-    id: string;
+    id_acolhido: number;
     nome_acolhido: string;
     naturalidade: string;
     cpf_acolhido: string;

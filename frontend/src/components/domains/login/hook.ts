@@ -28,6 +28,7 @@ export function UseLoginPage() {
         console.log("Usuário autenticado:", response);
 
         if (response?.error) {
+            console.log({ error: response.error })
             alert("Username ou senha incorretos");
             return;
         }

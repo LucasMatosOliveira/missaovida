@@ -1,3 +1,5 @@
+import { Interno, InternoReturn } from "./entidades";
+
 export class InternosApi {
 
     private _url: string;
@@ -10,8 +12,8 @@ export class InternosApi {
 
     public async getInternoPorId(id: string, token: string): Promise<Partial<InternoReturn>> {
         const url = this._postUrl.concat(`/${id}`);
-        console.log({token})
-        const response = await fetch(url,{
+        console.log({ token })
+        const response = await fetch(url, {
             headers: {
                 'Authorization': `Bearer ${token}`
             },
@@ -27,8 +29,6 @@ export class InternosApi {
     }
 
     public async inserir(dados: Interno, token: string): Promise<Interno> {
-        const teste = JSON.stringify(dados)
-        console.log({teste})
 
         const response = await fetch(this._postUrl, {
             method: 'POST',
@@ -49,7 +49,7 @@ export class InternosApi {
     }
 
     public async alterar(id: string, dados: Interno, token: string): Promise<Interno> {
-        console.log(JSON.stringify(dados))
+        console.log({ token, dados })
 
         const response = await fetch(this._postUrl, {
             method: 'PUT',
@@ -64,7 +64,7 @@ export class InternosApi {
             throw new Error(`Erro: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
-        console.log({data, response});
+        console.log({ data, response });
         return data;
     }
 
@@ -75,8 +75,33 @@ export class InternosApi {
             }
         });
 
-        const data = await response.json();
-        console.log({data});
-        return data;
+        const internos: Interno[] = await response.json();
+        return internos.map((data) => {
+            const pipeIndex = data['naturalidade'].indexOf('|')
+            if (pipeIndex == -1)
+                return data;
+
+            const { cidade, estadoUf } = mapNaturalidade(data['naturalidade'])
+            return {
+                ...data,
+                naturalidade: cidade + ' | ' + estadoUf
+            }
+        })
+
     }
+}
+
+const mapNaturalidade = (naturalidade: string): { cidade: string, estadoUf: string } => {
+    const pipeIndex = naturalidade.indexOf('|')
+    if (pipeIndex == -1)
+        return {
+            cidade: '',
+            estadoUf: ''
+        }
+
+    return {
+        cidade: naturalidade.substring(0, pipeIndex),
+        estadoUf: naturalidade.substring(pipeIndex + 1)
+    };
+
 }

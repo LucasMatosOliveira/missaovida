@@ -1,3 +1,4 @@
+import { EstadoUF } from '@/components/domains/formulario/entidades';
 import { useForm } from "react-hook-form";
 import { internosInsaltSchema, InternosInsaltSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -76,8 +77,9 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
 
 const mapSchemaForType = (data: InternosInsaltSchema): Interno => {
     return {
+        id_acolhido: data.id,
         nome_acolhido: data.name || '',
-        naturalidade: data.naturalidade || '',
+        naturalidade: (data.cidade + '|' + data.estadoUf) || '',
         cpf_acolhido: data.cpf || '',
         rg_acolhido: data.rg || '',
         orgao_expedidor_rg: data.orgaoExpedidor || '',
@@ -172,11 +174,13 @@ const mapSchemaForType = (data: InternosInsaltSchema): Interno => {
 
 const mapTypeForSchema = (data: Partial<InternoReturn>): InternosInsaltSchema => {
     console.log({ data });
+    const {cidade, estadoUf} = mapNaturalidade(data.naturalidade!)
     return {
-        id: data.id_acolhido ? data.id_acolhido.toString() : '',
+        id: data.id_acolhido,
         name: data.nome_acolhido || '',
         cpf: data.cpf_acolhido || '',
-        naturalidade: data.naturalidade || '',
+        cidade,
+        estadoUf,
         rg: data.rg_acolhido || '',
         orgaoExpedidor: data.orgao_expedidor_rg || '',
         dataNascimento: data.data_nascimento || '',
@@ -262,7 +266,20 @@ const mapTypeForSchema = (data: Partial<InternoReturn>): InternosInsaltSchema =>
     };
 };
 
+const mapNaturalidade = (naturalidade: string): { cidade: string, estadoUf: string } => {
+    const pipeIndex = naturalidade.indexOf('|')
+    if (pipeIndex == -1)
+        return {
+            cidade: '',
+            estadoUf: ''
+        }
 
+    return {
+        cidade: naturalidade.substring(0, pipeIndex),
+        estadoUf: naturalidade.substring(pipeIndex + 1)
+    };
+
+}
 export interface InternosInsaltArgs {
     idInterno?: string;
     onDadosSalvos?: (interno: any, isNovo: boolean) => void;
