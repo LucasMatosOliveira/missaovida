@@ -10,15 +10,30 @@ import { FormInputMask } from "@/components/form/FormInputMask";
 import { Masks } from "@/commom/form/mask";
 import { FilhosInsalt } from "./Filhos";
 import { useAppFormContext } from "@/components/form/hook";
+import { useEffect } from "react";
 
 const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
 export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
-    const { watch } = useAppFormContext();
+    const { watch, setValue } = useAppFormContext<InternosInsaltSchema>();
     const values = watch();
+    const familiaApoio = watch('temFamiliaApoio');
+    const religiao = watch('religiao');
+
+    useEffect(() => {
+        if(familiaApoio === false){
+            setValue('nomeFamiliar', '');
+            setValue('enderecoFamiliarApoio', '');
+        }
+    }, [familiaApoio]);
+
+    useEffect(() => {
+        if(religiao === false)
+            setValue('qualReligiao', '');
+    }, [religiao]);
 
     return (
-        <FormSection title="1 - DADOS PESSOAIS DO ACOLHIDO">
+        <FormSection title="DADOS PESSOAIS DO ACOLHIDO">
             <FormRow>
                 <FormColumn span={4}>
                     <FormInput name="name" label="Nome" />
@@ -63,10 +78,10 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
             </FormRow>
             <FormRow>
                 <FormColumn span={4}>
-                    <FormInputMask name="telefone" label="Telefone" mask={Masks.ToggleTelefone}/>
+                    <FormInputMask name="telefone" label="Telefone" mask={Masks.Telefone} />
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInputMask name="whatsapp" label="WhatsApp" mask={Masks.ToggleTelefone}/>
+                    <FormInputMask name="whatsapp" label="WhatsApp" mask={Masks.Celular}/>
                 </FormColumn>
                 <FormColumn span={4}>
                     <FormInput name="escolaridade" label="Escolaridade" />
@@ -82,14 +97,14 @@ export function DadosPessoaisInsalt({ idInterno }: DadosPessoaisInsaltProps) {
             </FormRow>
             <FormRow>
                 <FormColumn span={6}>
-                    <FormCheckbox<InternosInsaltSchema> name="temFamiliaApoio" label="Tem família que pode apoiá-lo?" />
+                    <FormCheckbox name="temFamiliaApoio" label="Tem família que pode apoiá-lo?" />
                     <FormColumn span={8} className={classNamesSubSection}>
                         <FormInput name="nomeFamiliar" label="Nome do familiar" disabled={!values.temFamiliaApoio} />
                         <FormInput name="enderecoFamiliarApoio" label="Endereço do familiar" disabled={!values.temFamiliaApoio} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6} >
-                    <FormCheckbox<InternosInsaltSchema> name="religiao" label="Religião" />
+                    <FormCheckbox name="religiao" label="Religião" />
                     <FormColumn span={8} className={classNamesSubSection}>
                         <FormInput name="qualReligiao" label="Qual Religião?"  disabled={!values.religiao}/>
                     </FormColumn>

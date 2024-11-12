@@ -19,7 +19,8 @@ export function InternoInsalt({ idInterno, onDadosSalvos }: InternoInsaltProps) 
     const { formMethods, handleSalvar } = useInternosInsalt({ idInterno, onDadosSalvos });
     const { handleSubmit, formState: { errors, isSubmitting }, watch, reset } = formMethods;
 
-    console.log({values: watch()})
+    //console.log({values: watch()})
+    //console.log({errors})
 
     const abasId = useMemo(() => setTabSufix({
         dadosPessoais: 'dadosPessoais',

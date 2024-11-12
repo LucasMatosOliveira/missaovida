@@ -74,6 +74,19 @@ export interface TermoGuarda {
     outros_objetos: string;
 }
 
+export interface TermoAlta {
+    nameAlta: string;
+    altaTerapeutica: boolean;
+    altaDesistencia: boolean;
+    altaAdministrativa: boolean;
+    altaAbandono: boolean;
+    altaJudicial: boolean;
+    altaFalecimento: boolean;
+    justificativaAlta: string;
+    nucleoAlta: string;
+    dataAlta: string;
+}
+
 export interface Interno {
     id_acolhido: number;
     nome_acolhido: string;
@@ -97,14 +110,14 @@ export interface Interno {
     religiao_acolhido: boolean;
     qual_religiao: string;
     ativo: boolean;
-    acolhidoFilhos: AcolhidoFilho[];
-    dados_saude: DadosSaude;
-    vida_juridica: VidaJuridica;
+    filhos: AcolhidoFilho[];
+    saude: DadosSaude;
+    juridica: VidaJuridica;
     substancia: Substancia;
-    estado_social: EstadoSocial;
-    termo_guarda: TermoGuarda;
+    social: EstadoSocial;
+    guarda: TermoGuarda;
+    alta: TermoAlta;
 }
-
 export interface InternoReturn {
     id_acolhido: number;
     nome_acolhido: string;

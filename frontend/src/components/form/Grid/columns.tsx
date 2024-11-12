@@ -11,9 +11,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import Icon from 'react-icons-kit';
 import {chevronDown} from 'react-icons-kit/fa/chevronDown'
+import { Interno } from '@/components/domains/formulario/entidades';
 
 export type User = {
-  id_acolhido: number; // Alterei para number, já que o exemplo JSON usa números
+  id_acolhido: number;
   nome_acolhido: string;
   naturalidade: string;
   cpf_acolhido: string;
@@ -64,13 +65,13 @@ export type User = {
     tentativa_suicidio: boolean;
     automutilacao: boolean;
   }>;
-  vidajuridica: any[]; // Ajuste conforme necessário
-  substancia: any[]; // Ajuste conforme necessário
-  social: any[]; // Ajuste conforme necessário
-  termoguarda: any[]; // Ajuste conforme necessário
+  vidajuridica: any[];
+  substancia: any[];
+  social: any[];
+  termoguarda: any[];
 };
 
-export const createColumns = (onAlterar?: (idInterno: string, nome: string) => void): ColumnDef<User>[] => [
+export const createColumns = (onAlterar?: (idInterno: string, nome: string) => void): ColumnDef<Interno>[] => [
   {
     accessorKey: 'nome_acolhido',
     header: ({ column }) => (

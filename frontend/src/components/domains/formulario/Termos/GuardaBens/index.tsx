@@ -8,40 +8,35 @@ import { AssinaturaPdfButton } from "@/components/reports/pdf";
 
 export function TermoGuardaBensInsalt() {
     return (
-        <FormSection title="6 - TERMO DE GUARDA DE BENS E DOCUMENTOS">
+        <FormSection title="TERMO DE GUARDA DE BENS E DOCUMENTOS">
             <div className="page-teste">
             <FormRow>
                 <FormColumn span={12}>
-                    <FormCheckbox<InternosInsaltSchema>
-                        name="autorizacaoGuardaDocumentos"
+                    <FormCheckbox
+                        name="guarda.autorizacao_guarda"
                         label="Autorizo a guarda dos meus documentos pessoais, bem como algum valor monetário que venha a possuir durante o período do programa de recuperação, como forma de prevenção a perda e roubo."
                     />
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={12}>
-                    <FormInput name="autorizacaoGuardaDocumentosQuais" label="Quais documentos serão guardados?" />
+                    <FormInput name="guarda.documentos_guardados" label="Quais documentos serão guardados?" />
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={4}>
-                    <FormInput name="carteiraDocumentosAparencia" label="Qual a aparência/cor da carteira para documentos?" />
+                    <FormInput name="guarda.descricao_carteira" label="Qual a aparência/cor da carteira para documentos?" />
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInput name="valorMonetarioApresentado" label="Apresentou recurso em espécie no valor de (R$)" />
+                    <FormInput name="guarda.recurso_especie" label="Apresentou recurso em espécie no valor de (R$)" />
                 </FormColumn>
                 <FormColumn span={4}>
-                    <FormInput name="aparelhoCelularApresentado" label="Aparelho celular/marca apresentado:" />
+                    <FormInput name="guarda.aparelho_celular" label="Aparelho celular/marca apresentado:" />
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={12}>
-                    <FormInput name="objetoValorApresentado" label="Outros objetos de valor apresentados:" />
-                </FormColumn>
-            </FormRow>
-            <FormRow>
-                <FormColumn>
-                    <AssinaturaPdfButton className="pt-2" action="open" type="button"/>
+                    <FormInput name="guarda.outros_objetos" label="Outros objetos de valor apresentados:" />
                 </FormColumn>
             </FormRow>
             </div>

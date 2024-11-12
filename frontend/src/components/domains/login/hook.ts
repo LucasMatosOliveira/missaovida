@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import { AppRoutes } from "@/commom/http/app-routes";
 import { UserLoginSchema, userLoginSchema } from "./schema";
 import { setToken } from "@/store/login";
+import { toast } from "react-toastify";
 
 export function UseLoginPage() {
     const router = useRouter();
@@ -28,8 +29,7 @@ export function UseLoginPage() {
         console.log("Usuário autenticado:", response);
 
         if (response?.error) {
-            console.log({ error: response.error })
-            alert("Username ou senha incorretos");
+            toast.error("Erro ao autenticar usuário");
             return;
         }
         const token = response?.ok ? (await getToken()) : null;
@@ -43,32 +43,6 @@ export function UseLoginPage() {
             alert("Erro ao autenticar, tente novamente.");
         }
 
-        // useEffect(() => {
-        //     if(!token)
-        //         return;
-
-        //     setTimeout(() => {
-        //         (async () => {
-        //             localStorage.clear();
-        //             await signOut({ callbackUrl: AppRoutes.Login() });
-        //         })();
-        //     }, 3600000)
-        // }, [token]);
-
-        // useEffect(() => {
-        //     if (!token) return;
-
-        //     const decoded = jwtDecode(token);
-        //     const currentTime = Date.now() / 1000;
-        //     const timeLeft = (decoded.exp! - currentTime) * 1000;
-
-        //     const logoutTimer = setTimeout(async () => {
-        //         localStorage.clear();
-        //         await signOut({ callbackUrl: AppRoutes.Login() });
-        //     }, timeLeft);
-
-        //     return () => clearTimeout(logoutTimer);
-        // }, [token]);
     };
 
     return {

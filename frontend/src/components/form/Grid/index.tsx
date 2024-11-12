@@ -74,7 +74,6 @@ export function DataTable<TData, TValue>({
     const handleClick = () => {
         router.push(AppRoutes.Internos());
     };
-    console.log('ABA')
     return (
         <>
             <div className="flex items-center justify-between">

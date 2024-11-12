@@ -9,7 +9,7 @@ import { useAppFormContext } from "../hook";
 
 export const FormCheckbox = <TModel,>({ name, label, help, disabled, className }: FormCheckboxProps<TModel>) => {
     const context = useAppFormContext();
-    const { control } = context;
+    const { control, getValues } = context;
 
     const checkboxRef = useRef(null);
 
@@ -20,26 +20,23 @@ export const FormCheckbox = <TModel,>({ name, label, help, disabled, className }
             <Controller
                 control={control}
                 name={name as string}
-                render={({ field: { value, onChange } }) => {
-
-                    return (
-                        <Checkbox
-                            id={id}
-                            className={className}
-                            checked={value}
-                            onChange={(e) => { onChange(e.target.checked) }}
-                            disabled={disabled}
-                            ref={checkboxRef}
-                        />
-                    );
-                }}
+                defaultValue={getValues(name as string) || false}
+                render={({ field: { value, onChange } }) => (
+                    <Checkbox
+                        id={id}
+                        className={className}
+                        checked={!!value}
+                        onChange={(e) => onChange(e.target.checked)}
+                        disabled={disabled}
+                        ref={checkboxRef}
+                    />
+                )}
             />
 
             <FormLabel name={name as string} className={disabled ? 'text-gray-400' : ''} htmlFor={id}>{label}</FormLabel>
             {help && <FormInfo content={help} />}
             <FormError name={name as string} />
         </>
-
     );
 }
 

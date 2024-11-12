@@ -7,46 +7,71 @@ import { InternosInsaltSchema } from "../schema";
 import { FormCheckbox } from "@/components/form/FormCheckbox";
 import { cloneAndAddClass } from "@/components/form";
 import { useAppFormContext } from "@/components/form/hook";
+import { useEffect } from "react";
 
 const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
 export function DadosJuridicosInsalt() {
-    const { getValues, watch } = useAppFormContext();
+    const { watch, setValue } = useAppFormContext<InternosInsaltSchema>();
     const values = watch();
+    const historicoPrisao = watch('juridica.historico_prisao');
+    const processos = watch('juridica.processos');
+    const tornozeleira = watch('juridica.uso_tornozeleira');
+    const situacaoLegal = watch('juridica.situacao_legal');
+
+    useEffect(() => {
+        if(historicoPrisao === false)
+           setValue('juridica.motivo_prisao', '')
+    }, [historicoPrisao]);
+
+    useEffect(() => {
+        if(processos === false)
+            setValue('juridica.localidade_processo', '')
+    }, [processos])
+
+    useEffect(() => {
+        if(tornozeleira === false)
+            setValue('juridica.uso_tornozeleira', '')
+    }, [tornozeleira])
+
+    useEffect(() => {
+        if(situacaoLegal === false)
+            setValue('juridica.motivo_situacao_ilegal', '')
+    }, [situacaoLegal])
 
     return (
-        <FormSection title="3 - DADOS SOBRE A VIDA JURÍDICA">
+        <FormSection title="DADOS SOBRE A VIDA JURÍDICA">
             <FormRow >
                 <FormColumn span={6} >
-                    <FormCheckbox name="foiPreso" label="Já foi preso" />
+                    <FormCheckbox name="juridica.historico_prisao" label="Já foi preso" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput<InternosInsaltSchema> name="foiPresoMotivo" label="Motivo" disabled={!values.foiPreso} />
+                        <FormInput name="juridica.motivo_prisao" label="Motivo" disabled={!values.juridica?.historico_prisao} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6}>
-                    <FormCheckbox<InternosInsaltSchema> name="respondeProcesso" label="Responde algum processo ou inquérito" />
+                    <FormCheckbox name="juridica.processos" label="Responde algum processo ou inquérito" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="respondeProcessoLocal" label="Em qual Cidade/Estado?" disabled={!values.respondeProcesso} />
+                        <FormInput name="juridica.localidade_processo" label="Em qual Cidade/Estado?" disabled={!values.juridica?.processos} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={6} >
-                    <FormCheckbox name="tornozeleiraEletronica" label="Faz uso de tornozeleira eletrônica" />
+                    <FormCheckbox name="juridica.uso_tornozeleira" label="Faz uso de tornozeleira eletrônica" />
                     <FormColumn span={8} className={cloneAndAddClass(classNamesSubSection)}>
-                        <FormCheckbox name="tornozeleiraEletronicaCentralMonitoramento" label="Informou a central de monitoramento" disabled={!values.tornozeleiraEletronica} />
+                        <FormCheckbox name="juridica.informou_central" label="Informou a central de monitoramento" disabled={!values.juridica?.uso_tornozeleira} />
                     </FormColumn>
                 </FormColumn>
                 <FormColumn span={6} >
-                    <FormCheckbox name="desacordoLei" label="Está em desacordo com a lei" />
+                    <FormCheckbox name="juridica.situacao_legal" label="Está em desacordo com a lei" />
                     <FormColumn span={8} className={classNamesSubSection}>
-                        <FormInput name="desacordoLeiMotivo" label="Porquê?" disabled={!values.desacordoLei} />
+                        <FormInput name="juridica.motivo_situacao_ilegal" label="Porquê?" disabled={!values.juridica?.situacao_legal} />
                     </FormColumn>
                 </FormColumn>
             </FormRow>
             <FormRow>
                 <FormColumn span={6} >
-                    <FormCheckbox name="cumpriuPena" label="Já cumpriu pena" />
+                    <FormCheckbox name="juridica.cumpriu_pena" label="Já cumpriu pena" />
                 </FormColumn>
             </FormRow>
         </FormSection>

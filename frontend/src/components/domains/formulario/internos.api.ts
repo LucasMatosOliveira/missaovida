@@ -10,9 +10,8 @@ export class InternosApi {
         this._postUrl = "http://189.126.111.132:8001/api/Acolhido";
     }
 
-    public async getInternoPorId(id: string, token: string): Promise<Partial<InternoReturn>> {
+    public async getInternoPorId(id: string, token: string): Promise<Partial<Interno>> {
         const url = this._postUrl.concat(`/${id}`);
-        console.log({ token })
         const response = await fetch(url, {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -40,7 +39,9 @@ export class InternosApi {
         });
 
         if (!response.ok) {
-            throw new Error(`Erro: ${response.status} ${response.statusText}`);
+            console.log({ response });
+            const data = await response.json();
+            console.log(data);
         }
 
         const data = await response.json();
@@ -60,10 +61,11 @@ export class InternosApi {
             body: JSON.stringify(dados)
         });
 
+        const data = await response.json();
         if (!response.ok) {
+            console.log({ data });
             throw new Error(`Erro: ${response.status} ${response.statusText}`);
         }
-        const data = await response.json();
         console.log({ data, response });
         return data;
     }

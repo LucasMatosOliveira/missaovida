@@ -38,8 +38,6 @@ export const FormInputMask = <TModel,>({ label, name, disabled, help, step = 'an
     }
   };
 
-  const teste = 1
-
   return (
     <>
       <label className={disabled ? 'text-gray-400' : erroMessage ? 'text-danger' : ''}>{label}</label>
