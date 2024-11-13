@@ -14,6 +14,7 @@ export function useAssinaturaPdfButton({ nomeAcolhido, action, estado }: UseAssi
 
     const { watch, getValues} = useAppFormContext<InternosInsaltSchema>();
     const dadosAlta = watch('alta');
+    const dados = watch();
     let motivoAlta = 'N/A';
     if (dadosAlta?.altaTerapeutica) {
         motivoAlta = 'Alta Terapêutica (Conclusão)';
@@ -28,7 +29,18 @@ export function useAssinaturaPdfButton({ nomeAcolhido, action, estado }: UseAssi
     } else if (dadosAlta?.altaFalecimento) {
         motivoAlta = 'Falecimento';
     }
+
     const details: Content = [
+      { text: 'TERMO DE RESPONSABILIDADE DE ACOLHIMENTO', style: 'header', alignment: 'center' },
+        {
+            text: [
+                `Declaro que iniciei o Programa de Recuperação para tratamento da dependência química e/ou do estado de vulnerabilidade social em que me encontro no Centro de Recuperação da Missão Vida, na cidade de ${dados.cidade}, estado de ${dados.estadoUf}, no dia ${date.getDate()} de ${date.getMonth() + 1} de ${date.getFullYear()}, permanecendo no local por livre e espontânea vontade.\n\n`,
+                'Declaro estar ciente que o Programa de Recuperação é de sete (7) meses e tenho direito de sair para visitas a partir dos três meses e meio (3 ½). O programa é gratuito incluindo: alimentação, internato em regime de residência transitória, assistências: médica, odontológica, psicologia e espiritual.\n\n',
+                'Estou disposto a receber o acompanhamento sabendo que o mesmo se baseia em terapias ocupacionais e laborais, psicoterapias breves, convivência em grupo e espiritualidade, tendo eu ainda a disposição em cumprir os horários e regras estabelecidas pela Missão Vida.',
+            ],
+            style: 'body'
+        },
+        { text: '\n\n\n' },
         { text: 'TERMO DE ALTA DO ACOLHIDO', style: 'header', alignment: 'center' },
         {
           text: [

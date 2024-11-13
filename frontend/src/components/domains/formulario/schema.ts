@@ -92,13 +92,13 @@ export const altaSchema = z.object({
 
 export const internosInsaltSchema = z.object({
     id: numberCoerce(z.number().optional()),
-    name: z.string().optional(),
+    name: z.string(),
     cpf: z.string().optional(),
     cidade: z.string().optional(),
     estadoUf: z.string().toUpperCase().optional(),
     rg: z.string().optional(),
     orgaoExpedidor: z.string().optional(),
-    dataNascimento: z.string().optional(),
+    dataNascimento: z.string(),
     etnia: z.string().optional(),
     filiacaoPai: z.string().optional(),
     mae: z.string().optional(),

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { FormColumn } from "@/components/form/FormColumn";
 import { FormRow } from "@/components/form/FormRow";
@@ -7,7 +8,6 @@ import { InternosInsaltSchema } from "../schema";
 import { FormCheckbox } from "@/components/form/FormCheckbox";
 import { cloneAndAddClass } from "@/components/form";
 import { useAppFormContext } from "@/components/form/hook";
-import { useEffect } from "react";
 
 const classNamesSubSection = "border-l-2 border-gray-300 pl-2 ml-5";
 
