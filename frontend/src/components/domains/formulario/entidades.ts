@@ -75,6 +75,7 @@ export interface TermoGuarda {
 }
 
 export interface TermoAlta {
+    id_termo_alta: string;
     nameAlta: string;
     altaTerapeutica: boolean;
     altaDesistencia: boolean;

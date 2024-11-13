@@ -91,6 +91,90 @@ export class InternosApi {
         })
 
     }
+    public async desativar(id: string, token: string): Promise<Interno> {
+        let dadosMap = {}
+        const dados = await this.getInternoPorId(id, token);
+
+        const isEmpty = (obj: any) => Object.keys(obj).length === 0;
+        if (isEmpty(dados.alta))
+            dadosMap = {
+                ...dados, ativo: false, alta: {
+                    id_termo_alta: "",
+                    nameAlta: "",
+                    altaTerapeutica: false,
+                    altaDesistencia: false,
+                    altaAdministrativa: false,
+                    altaAbandono: false,
+                    altaJudicial: false,
+                    altaFalecimento: false,
+                    justificativaAlta: "",
+                    nucleoAlta: "",
+                    dataAlta: ""
+                }
+            };
+        else
+            dadosMap = { ...dados, ativo: false };
+
+        console.log({ dados })
+        const response = await fetch(this._postUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosMap)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            console.log({ data });
+            throw new Error(`Erro: ${response.status} ${response.statusText}`);
+        }
+        console.log({ data, response });
+        return data;
+    }
+
+    public async ativar(id: string, token: string): Promise<Interno> {
+        let dadosMap = {}
+        const dados = await this.getInternoPorId(id, token);
+
+        const isEmpty = (obj: any) => Object.keys(obj).length === 0;
+        if (isEmpty(dados.alta))
+            dadosMap = {
+                ...dados, ativo: true, alta: {
+                    id_termo_alta: "",
+                    nameAlta: "",
+                    altaTerapeutica: false,
+                    altaDesistencia: false,
+                    altaAdministrativa: false,
+                    altaAbandono: false,
+                    altaJudicial: false,
+                    altaFalecimento: false,
+                    justificativaAlta: "",
+                    nucleoAlta: "",
+                    dataAlta: ""
+                }
+            };
+        else
+            dadosMap = { ...dados, ativo: true };
+
+        const response = await fetch(this._postUrl, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosMap)
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            console.log({ data });
+            throw new Error(`Erro: ${response.status} ${response.statusText}`);
+        }
+        console.log({ data, response });
+        return data;
+    }
 }
 
 const mapNaturalidade = (naturalidade: string): { cidade: string, estadoUf: string } => {

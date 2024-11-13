@@ -10,8 +10,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Icon from 'react-icons-kit';
-import {chevronDown} from 'react-icons-kit/fa/chevronDown'
+import { chevronDown } from 'react-icons-kit/fa/chevronDown'
 import { Interno } from '@/components/domains/formulario/entidades';
+import { InternosApi } from '@/components/domains/formulario/internos.api';
+import { toast } from 'react-toastify';
 
 export type User = {
   id_acolhido: number;
@@ -103,15 +105,41 @@ export const createColumns = (onAlterar?: (idInterno: string, nome: string) => v
     },
   },
   {
+    accessorKey: 'ativo',
+    header: 'Ativo',
+    cell: ({ row }) => {
+      const ativo = row.original.ativo;
+      const formatted = ativo ? "Sim" : "Não";
+      return <div className="font-medium">{formatted}</div>;
+    },
+  },
+  {
     id: 'actions',
     cell: ({ row }) => {
       const user = row.original;
-
+      const token = localStorage.getItem("token");
+      const actionInterno = async (userId: string, action: "ativar" | "desativar") => {
+        const api = new InternosApi();
+        if (action === 'desativar') {
+          if (token) {
+            await api.desativar(userId, token);
+          }
+          else
+            toast.error("Usuário não atutenticado");
+        }
+        else {
+          if (token) {
+            await api.ativar(userId, token);
+          }
+          else
+            toast.error("Usuário não atutenticado");
+        }
+      }
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="default" className="h-8 w-8 p-0 border-black hover:bg-slate-700">
-              <Icon icon={chevronDown} className='text-gray-500 '/>
+              <Icon icon={chevronDown} className='text-gray-500 ' />
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
@@ -120,7 +148,6 @@ export const createColumns = (onAlterar?: (idInterno: string, nome: string) => v
             <DropdownMenuItem
               onClick={() => {
                 if (onAlterar) {
-                  console.log({testeIdInterno: user.id_acolhido, testeNome: user.nome_acolhido, user})
                   onAlterar(user.id_acolhido.toString(), user.nome_acolhido);
                 }
               }}
@@ -128,7 +155,10 @@ export const createColumns = (onAlterar?: (idInterno: string, nome: string) => v
               Visualizar/Editar
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Desativar</DropdownMenuItem>
+            {user.ativo ?
+              <DropdownMenuItem onClick={() => actionInterno(user.id_acolhido.toString(), 'desativar')}>Desativar</DropdownMenuItem>
+              : <DropdownMenuItem onClick={() => actionInterno(user.id_acolhido.toString(), 'ativar')}>Ativar</DropdownMenuItem>
+            }
           </DropdownMenuContent>
         </DropdownMenu>
       );
