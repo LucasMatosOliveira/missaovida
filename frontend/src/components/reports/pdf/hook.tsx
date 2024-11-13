@@ -32,60 +32,119 @@ export function useAssinaturaPdfButton({ nomeAcolhido, action, estado }: UseAssi
 
     const details: Content = [
       { text: 'TERMO DE RESPONSABILIDADE DE ACOLHIMENTO', style: 'header', alignment: 'center' },
-        {
-            text: [
-                `Declaro que iniciei o Programa de Recuperação para tratamento da dependência química e/ou do estado de vulnerabilidade social em que me encontro no Centro de Recuperação da Missão Vida, na cidade de ${dados.cidade}, estado de ${dados.estadoUf}, no dia ${date.getDate()} de ${date.getMonth() + 1} de ${date.getFullYear()}, permanecendo no local por livre e espontânea vontade.\n\n`,
-                'Declaro estar ciente que o Programa de Recuperação é de sete (7) meses e tenho direito de sair para visitas a partir dos três meses e meio (3 ½). O programa é gratuito incluindo: alimentação, internato em regime de residência transitória, assistências: médica, odontológica, psicologia e espiritual.\n\n',
-                'Estou disposto a receber o acompanhamento sabendo que o mesmo se baseia em terapias ocupacionais e laborais, psicoterapias breves, convivência em grupo e espiritualidade, tendo eu ainda a disposição em cumprir os horários e regras estabelecidas pela Missão Vida.',
-            ],
-            style: 'body'
-        },
-        { text: '\n\n\n' },
-        { text: 'TERMO DE ALTA DO ACOLHIDO', style: 'header', alignment: 'center' },
-        {
-          text: [
-              `Nome: ${getValues('name') ?? 'N/A'}\n`,
-              `Motivo da Alta: ${motivoAlta}\n`,
-              `Justificativa: ${dadosAlta?.justificativaAlta ?? 'N/A'}\n`,
-              `Núcleo: ${dadosAlta?.nucleoAlta ?? 'N/A'}\n`,
-              `Data: ${dadosAlta?.dataAlta ?? 'N/A'}\n`,
-          ],
-          style: 'body'
+      {
+        text: [
+          `Declaro que iniciei o Programa de Recuperação para tratamento da dependência química e/ou do estado de vulnerabilidade social em que me encontro no Centro de Recuperação da Missão Vida, na cidade de ${dados.cidade}, estado de ${dados.estadoUf}, no dia ${date.getDate()} de ${date.getMonth() + 1} de ${date.getFullYear()}, permanecendo no local por livre e espontânea vontade.\n\n`,
+          'Declaro estar ciente que o Programa de Recuperação é de sete (7) meses e tenho direito de sair para visitas a partir dos três meses e meio (3 ½). O programa é gratuito incluindo: alimentação, internato em regime de residência transitória, assistências: médica, odontológica, psicologia e espiritual.\n\n',
+          'Estou disposto a receber o acompanhamento sabendo que o mesmo se baseia em terapias ocupacionais e laborais, psicoterapias breves, convivência em grupo e espiritualidade, tendo eu ainda a disposição em cumprir os horários e regras estabelecidas pela Missão Vida.',
+        ],
+        style: 'body'
       },
-        { text: '\n\n\n' },
-        {
-            columns: [
-              {
-                stack: [
-                  { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 1 }], alignment: 'left' },
-                  { text: '\nAssinatura do Acolhido - Por extenso', alignment: 'center' },
-                ],
-                width: '50%',
-                margin: [0, 0, 0, 0],
-                alignment: 'left'
-              },
-              {
-                stack: [
-                  { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 1 }], alignment: 'right' },
-                  { text: '\nAssinatura do Coordenador do Núcleo', alignment: 'center' },
-                ],
-                width: '50%',
-                margin: [0, 0, 0, 0],
-                alignment: 'right'
-              }
+      { text: '\n\n\n' },
+      {
+        columns: [
+          {
+            stack: [
+              { text: '1ª SAÍDA', style: 'header', alignment: 'left' },
+              { text: 'DATA DE SAÍDA: _____ / _____ / _____', style: 'body' },
+              { text: 'DATA DE RETORNO: _____ / _____ / _____', style: 'body' },
+              { text: 'VISTO DO ACOLHIDO: __________________', style: 'body' },
+              { text: 'VISTO DO OBREIRO: __________________', style: 'body' },
+              { text: 'MOTIVO: __________________', style: 'body' }
             ],
-            columnGap: 150,
-            alignment: 'center'
+            width: '50%',
+            margin: [0, 0, 10, 0]
+          },
+          { text: '\n\n' },
+          {
+            stack: [
+              { text: '2ª SAÍDA', style: 'header', alignment: 'left' },
+              { text: 'DATA DE SAÍDA: _____ / _____ / _____', style: 'body' },
+              { text: 'DATA DE RETORNO: _____ / _____ / _____', style: 'body' },
+              { text: 'VISTO DO ACOLHIDO: __________________', style: 'body' },
+              { text: 'VISTO DO OBREIRO: __________________', style: 'body' },
+              { text: 'MOTIVO: __________________', style: 'body' }
+            ],
+            width: '50%',
+            margin: [10, 20, 0, 0]
+          }
+        ]
+      },
+      {
+        columns: [
+          {
+            stack: [
+              { text: '3ª SAÍDA', style: 'header', alignment: 'left' },
+              { text: 'DATA DE SAÍDA: _____ / _____ / _____', style: 'body' },
+              { text: 'DATA DE RETORNO: _____ / _____ / _____', style: 'body' },
+              { text: 'VISTO DO ACOLHIDO: __________________', style: 'body' },
+              { text: 'VISTO DO OBREIRO: __________________', style: 'body' },
+              { text: 'MOTIVO: __________________', style: 'body' }
+            ],
+            width: '50%',
+            margin: [0, 0, 10, 0]
           },
           {
             stack: [
-              { text: '\n\n\n' },
-              { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 1 }], alignment: 'center' },
-              { text: '\nObreiro responsável pelo desligamento', alignment: 'center',  }
+              { text: '4ª SAÍDA', style: 'header', alignment: 'left' },
+              { text: 'DATA DE SAÍDA: _____ / _____ / _____', style: 'body' },
+              { text: 'DATA DE RETORNO: _____ / _____ / _____', style: 'body' },
+              { text: 'VISTO DO ACOLHIDO: __________________', style: 'body' },
+              { text: 'VISTO DO OBREIRO: ___________________', style: 'body' },
+              { text: 'MOTIVO: ______________________', style: 'body' }
             ],
-            alignment: 'center'
+            width: '50%',
+            margin: [10, 20, 0, 0]
           }
+        ]
+      },
+      { text: '\n\n\n\n\n\n\n\n\n\n' },
+      { text: 'TERMO DE ALTA DO ACOLHIDO', style: 'header', alignment: 'center' },
+      {
+        text: [
+          `Nome: ${getValues('name') ?? 'N/A'}\n`,
+          `Motivo da Alta: ${motivoAlta}\n`,
+          `Justificativa: ${dadosAlta?.justificativaAlta ?? 'N/A'}\n`,
+          `Núcleo: ${dadosAlta?.nucleoAlta ?? 'N/A'}\n`,
+          `Data: ${dadosAlta?.dataAlta ?? 'N/A'}\n`,
+        ],
+        style: 'body'
+      },
+      { text: '\n\n\n' },
+      {
+        columns: [
+          {
+            stack: [
+              { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 1 }], alignment: 'left' },
+              { text: '\nAssinatura do Acolhido - Por extenso', alignment: 'center' },
+            ],
+            width: '50%',
+            margin: [0, 0, 0, 0],
+            alignment: 'left'
+          },
+          {
+            stack: [
+              { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 1 }], alignment: 'right' },
+              { text: '\nAssinatura do Coordenador do Núcleo', alignment: 'center' },
+            ],
+            width: '50%',
+            margin: [0, 0, 0, 0],
+            alignment: 'right'
+          }
+        ],
+        columnGap: 150,
+        alignment: 'center'
+      },
+      {
+        stack: [
+          { text: '\n\n\n' },
+          { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 200, y2: 0, lineWidth: 1 }], alignment: 'center' },
+          { text: '\nObreiro responsável pelo desligamento', alignment: 'center' }
+        ],
+        alignment: 'center'
+      }
     ];
+
 
     const docDefinitions: TDocumentDefinitions = {
         pageSize: 'A4',
