@@ -31,7 +31,7 @@ export function DadosJuridicosInsalt() {
 
     useEffect(() => {
         if(tornozeleira === false)
-            setValue('juridica.uso_tornozeleira', '')
+            setValue('juridica.informou_central', false)
     }, [tornozeleira])
 
     useEffect(() => {

@@ -3,30 +3,30 @@ import { obterValor } from "@/commom/primitives/object";
 import { useState, useEffect } from "react";
 import { FieldErrors } from "react-hook-form";
 
-export function useTabErros({context, errors}: UseTabErrosArgs) {
+export function useTabErros({ context, errors }: UseTabErrosArgs) {
 
     const [tabsIds, setTabsIds] = useState<Record<string, boolean>>({});
     const errorsMessages = obterErrors(errors);
 
     useEffect(() => {
 
-        if(!context)
+        if (!context)
             return;
 
         setTimeout(() => {
             const result = getTabsWithErrors(context);
-            const resultKeys = Object.keys(result).sort((a,b) => sortAscCriterio(a,b)).join("");
-            const tabsKeys = Object.keys(tabsIds).sort((a,b) => sortAscCriterio(a,b)).join("");
-            if( resultKeys !== tabsKeys )
+            const resultKeys = Object.keys(result).sort((a, b) => sortAscCriterio(a, b)).join("");
+            const tabsKeys = Object.keys(tabsIds).sort((a, b) => sortAscCriterio(a, b)).join("");
+            if (resultKeys !== tabsKeys)
                 setTabsIds(result);
         }, 0);
 
     }, [errorsMessages]);
 
-    return {tabsIds};
+    return { tabsIds };
 }
 
-export interface UseTabErrosArgs{
+export interface UseTabErrosArgs {
     context: HTMLElement | null;
     errors: FieldErrors;
 }
@@ -34,7 +34,7 @@ export interface UseTabErrosArgs{
 const getTabsWithErrors = (form: HTMLElement) => {
     const tabIds: Record<string, boolean> = {};
     const errorElements = form.querySelectorAll(".form-control-feedback.error-message");
-    for (const element of Array.from(errorElements)){
+    for (const element of Array.from(errorElements)) {
         const tabElement = element.closest(".tab-pane");
         if (!tabElement)
             continue;
