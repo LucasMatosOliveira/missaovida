@@ -103,12 +103,27 @@ export function DashboardGrid({ idInterno, onDadosSalvos, newTab }: DashboardPro
     newTab?.(id, nome);
   };
 
+  const atualizarDados = async () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+        const fetchData = async () => {
+          const api = new InternosApi();
+          const res = await api.getInternosForGrid(token);
+          setUserData(res);
+        };
+
+        fetchData();
+      } else {
+        toast.warn("Usuário não encontrado");
+      }
+};
+
   const columns = createColumns(handleAlterar);
 
   return (
     <>
       {isTokenValid ? (
-        <DataTable columns={columns} data={userData} actionsAddTab={newTab} onAlterar={handleAlterar} />
+        <DataTable columns={columns} data={userData} actionsAddTab={newTab} onAlterar={handleAlterar} refreshData={atualizarDados}/>
       ) : (
         <div>Token inválido. Redirecionando...</div>
       )}

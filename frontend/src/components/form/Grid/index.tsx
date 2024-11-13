@@ -40,12 +40,14 @@ interface DataTableProps<TData, TValue> {
     data: TData[];
     actionsAddTab?: (idInterno: string, descicao: string) => void;
     onAlterar?: (idInterno: string, descricao: string) => void;
+    refreshData?: () => void;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
     actionsAddTab,
+    refreshData,
     onAlterar
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
@@ -71,9 +73,6 @@ export function DataTable<TData, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    const handleClick = () => {
-        router.push(AppRoutes.Internos());
-    };
     return (
         <>
             <div className="flex items-center justify-between">
@@ -90,7 +89,9 @@ export function DataTable<TData, TValue>({
                         }
                     />
                 </div>
-
+                <Button variant="outline" className="ml-4 text-black" onClick={() => refreshData?.()}>
+                    Atualizar
+                </Button>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="outline" className="ml-auto text-black">
