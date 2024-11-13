@@ -18,7 +18,7 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
     });
 
     const { showSpinner, hideSpinner } = useSpinner();
-    const state = useSnapshot(authState);
+    const token = localStorage.getItem('token');
 
     const { reset } = formMethods;
 
@@ -26,24 +26,27 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
         if (!idInterno)
             return;
 
+        if (!token)
+            return;
+
         (async () => {
             try {
                 showSpinner();
                 const api = new InternosApi();
-                const response = await api.getInternoPorId(idInterno, state.token!);
+                const response = await api.getInternoPorId(idInterno, token!);
                 const mappedData = mapTypeForSchema(response);
 
                 reset(mappedData);
             }
             catch (error) {
-                toast.error("Usuário desconectado");
+                toast.error("Erro ao cadastrar");
             }
             finally {
                 hideSpinner();
             }
         })();
 
-    }, [idInterno]);
+    }, [idInterno, token]);
 
     const handleSalvar = async (data: InternosInsaltSchema) => {
         const isNovo = !idInterno;
@@ -52,8 +55,8 @@ export function useInternosInsalt({ idInterno, onDadosSalvos }: InternosInsaltAr
         try {
             const api = new InternosApi()
             const response = isNovo
-                ? await api.inserir(dados, state.token!)
-                : await api.alterar(idInterno, dados, state.token!);
+                ? await api.inserir(dados, token!)
+                : await api.alterar(idInterno, dados, token!);
             toast.success('Dados salvos com sucesso')
 
         }
@@ -169,7 +172,8 @@ const mapSchemaForType = (data: InternosInsaltSchema): Interno => {
             outros_objetos: data.guarda.outros_objetos ?? '',
         },
         alta: {
-            nameAlta: data.alta.nameAlta ?? '',
+            id_termo_alta: data.alta.id_termo_alta ?? '',
+            nameAlta: data.name ?? '',
             altaAbandono: data.alta.altaAbandono ?? false,
             altaAdministrativa: data.alta.altaAdministrativa ?? false,
             altaDesistencia: data.alta.altaDesistencia ?? false,

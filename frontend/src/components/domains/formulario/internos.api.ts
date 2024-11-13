@@ -115,7 +115,6 @@ export class InternosApi {
         else
             dadosMap = { ...dados, ativo: false };
 
-        console.log({ dados })
         const response = await fetch(this._postUrl, {
             method: 'PUT',
             headers: {
@@ -130,7 +129,6 @@ export class InternosApi {
             console.log({ data });
             throw new Error(`Erro: ${response.status} ${response.statusText}`);
         }
-        console.log({ data, response });
         return data;
     }
 

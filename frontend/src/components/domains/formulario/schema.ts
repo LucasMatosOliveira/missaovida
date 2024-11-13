@@ -78,6 +78,7 @@ export const guardaSchema = z.object({
 });
 
 export const altaSchema = z.object({
+    id_termo_alta: z.string().optional(),
     nameAlta: z.string().optional(),
     altaTerapeutica: booleanCoerce(z.boolean()).optional(),
     altaDesistencia: booleanCoerce(z.boolean()).optional(),
